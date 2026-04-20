@@ -1,0 +1,2320 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hikar® SIEN™ DigiOps Platform</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    html {
+      overflow-y: scroll
+    }
+
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--bg)
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--border2);
+      border-radius: 3px
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--teal)
+    }
+
+    :root {
+      --bg: #f0f4f8;
+      --bg2: #ffffff;
+      --bg3: #f7f9fc;
+      --bg4: #edf1f7;
+      --border: #e2e8f0;
+      --border2: #cbd5e1;
+      --teal: #00AEEF;
+      --teal2: #0099d6;
+      --teal3: #b3e8ff;
+      --blue: #00AEEF;
+      --blue2: #0099d6;
+      --blue3: #e0f4ff;
+      --purple: #7c3aed;
+      --purple2: #6d28d9;
+      --amber: #f59e0b;
+      --amber2: #d97706;
+      --red: #ef4444;
+      --red2: #dc2626;
+      --text: #1e293b;
+      --text2: #475569;
+      --text3: #94a3b8;
+      --white: #ffffff;
+    }
+
+    body {
+      font-family: 'Poppins', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1)
+      }
+
+      50% {
+        opacity: 0.5;
+        transform: scale(1.3)
+      }
+    }
+
+    @keyframes glowPulse {
+
+      0%,
+      100% {
+        filter: drop-shadow(0 0 3px var(--teal))
+      }
+
+      50% {
+        filter: drop-shadow(0 0 8px var(--teal))
+      }
+    }
+
+    /* NAV */
+    .nav {
+      height: 64px;
+      background: rgba(255, 255, 255, 0.75);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.02);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 32px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px
+    }
+
+    .logo-hex {
+      width: 32px;
+      height: 32px;
+      background: var(--teal);
+      clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 12px;
+      color: #fff;
+      letter-spacing: -0.5px;
+      animation: glowPulse 3s ease-in-out infinite
+    }
+
+    .logo-brand {
+      font-size: 15px;
+      font-weight: 700;
+      color: #1e293b;
+      letter-spacing: -0.3px
+    }
+
+    .logo-brand span {
+      color: var(--teal)
+    }
+
+    .logo-prod {
+      font-size: 10px;
+      color: var(--text3);
+      border-left: 1px solid var(--border2);
+      padding-left: 10px;
+      margin-left: 4px
+    }
+
+    .nav-tabs {
+      display: flex;
+      gap: 2px
+    }
+
+    .nav-tab {
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text3);
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      transition: all 0.2s;
+      font-family: 'Poppins', sans-serif
+    }
+
+    .nav-tab:hover {
+      color: var(--text);
+      background: var(--bg4)
+    }
+
+    .nav-tab.active {
+      color: var(--teal);
+      background: rgba(0, 174, 239, 0.1);
+      border: 1px solid rgba(0, 174, 239, 0.25)
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 10px
+    }
+
+    .live-chip {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 10px;
+      background: rgba(0, 174, 239, 0.08);
+      border: 1px solid rgba(0, 174, 239, 0.25);
+      border-radius: 20px;
+      font-size: 11px;
+      color: var(--teal)
+    }
+
+    .live-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--teal)
+    }
+
+    .nav-clock {
+      font-size: 11px;
+      color: var(--text3);
+      font-variant-numeric: tabular-nums
+    }
+
+    .nav-avatar {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--blue3);
+      border: 1px solid var(--blue);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--teal)
+    }
+
+    /* PAGES */
+    .page {
+      display: none;
+      animation: fadeIn 0.3s ease
+    }
+
+    .page.active {
+      display: block
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(6px)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0)
+      }
+    }
+
+    /* ---- PAGE 1: OVERVIEW ---- */
+    .kpi-strip {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 16px;
+      padding: 16px 24px;
+      background: var(--bg3);
+      border-bottom: 1px solid var(--border)
+    }
+
+    .kpi {
+      background: var(--bg2);
+      padding: 16px;
+      border-radius: 12px;
+      border: 1px solid rgba(0, 0, 0, 0.04);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03), 0 2px 4px -2px rgba(0, 0, 0, 0.03);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .kpi:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 24px -4px rgba(0, 0, 0, 0.08), 0 8px 12px -6px rgba(0, 0, 0, 0.04);
+      border-color: rgba(0, 174, 239, 0.2);
+    }
+
+    .kpi-lbl {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--text3);
+      margin-bottom: 5px
+    }
+
+    .kpi-num {
+      font-size: 26px;
+      font-weight: 700;
+      line-height: 1;
+      color: var(--text)
+    }
+
+    .kpi-num.teal {
+      color: var(--teal)
+    }
+
+    .kpi-num.amber {
+      color: var(--amber)
+    }
+
+    .kpi-num.red {
+      color: var(--red)
+    }
+
+    .kpi-num.blue {
+      color: var(--teal)
+    }
+
+    .kpi-num.purple {
+      color: var(--purple)
+    }
+
+    .kpi-badge {
+      margin-top: 4px;
+      font-size: 10px
+    }
+
+    .badge-up {
+      color: var(--teal)
+    }
+
+    .badge-down {
+      color: var(--red)
+    }
+
+    .badge-flat {
+      color: var(--text3)
+    }
+
+    .ov-grid {
+      display: grid;
+      grid-template-columns: 280px 1fr 280px;
+      min-height: 420px;
+      gap: 24px;
+      padding: 24px;
+      background: var(--bg);
+    }
+
+    .panel {
+      background: var(--bg2);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      border-radius: 16px;
+      border: 1px solid rgba(0, 0, 0, 0.04);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03), 0 2px 4px -2px rgba(0, 0, 0, 0.03);
+      transition: box-shadow 0.3s ease;
+    }
+    .panel:hover {
+      box-shadow: 0 10px 24px -4px rgba(0, 0, 0, 0.06);
+    }
+
+    .p-hdr {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--text3);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between
+    }
+
+    .p-hdr-badge {
+      font-size: 9px;
+      padding: 2px 7px;
+      border-radius: 10px;
+      background: rgba(0, 174, 239, 0.1);
+      color: var(--teal);
+      border: 1px solid rgba(0, 174, 239, 0.25)
+    }
+
+    /* Asset rows */
+    .a-row {
+      display: grid;
+      grid-template-columns: 8px 54px 1fr 28px 58px;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-bottom: 4px;
+      border: 1px solid transparent;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .a-row:hover {
+      background: var(--bg4);
+      transform: translateX(4px);
+    }
+
+    .a-row.sel {
+      background: linear-gradient(90deg, rgba(0, 174, 239, 0.12) 0%, rgba(0, 174, 239, 0.04) 100%);
+      border-color: rgba(0, 174, 239, 0.3);
+      box-shadow: inset 3px 0 0 var(--teal);
+    }
+
+    .a-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      flex-shrink: 0
+    }
+
+    .dot-g {
+      background: var(--teal)
+    }
+
+    .dot-a {
+      background: var(--amber)
+    }
+
+    .dot-r {
+      background: var(--red)
+    }
+
+    .dot-x {
+      background: var(--text3)
+    }
+
+    .a-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+      white-space: nowrap;
+    }
+
+    .a-site {
+      font-size: 10px;
+      color: var(--text3);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .a-eff {
+      font-size: 11px;
+      color: var(--text2);
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .a-st {
+      font-size: 8px;
+      padding: 3px 0;
+      border-radius: 4px;
+      font-weight: 600;
+      width: 100%;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+    }
+
+    .st-r {
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      color: var(--teal);
+    }
+
+    .st-w {
+      background: linear-gradient(135deg, #fef3c7, #fde68a);
+      color: var(--amber2);
+      border: 1px solid #fcd34d;
+    }
+
+    .st-c {
+      background: linear-gradient(135deg, #fee2e2, #fca5a5);
+      color: var(--red2);
+      border: 1px solid #f87171;
+    }
+
+    .st-x {
+      background: #f1f5f9;
+      color: var(--text3);
+    }
+
+    /* MAP */
+    .map-wrap {
+      position: relative;
+      overflow: hidden;
+      background: var(--bg2);
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.03);
+    }
+
+    .map-svg {
+      width: 100%;
+      height: 100%
+    }
+
+    .grid-line {
+      stroke: var(--border);
+      stroke-width: 1;
+      stroke-dasharray: 4 4;
+    }
+
+    .pipe {
+      fill: none;
+      stroke: var(--border2);
+      stroke-width: 1.5;
+      stroke-dasharray: 6 4;
+      opacity: 0.6;
+      animation: pipeDash 20s linear infinite
+    }
+
+    @keyframes pipeDash {
+      from {
+        stroke-dashoffset: 0
+      }
+
+      to {
+        stroke-dashoffset: -100
+      }
+    }
+
+    .site-ring {
+      fill: none;
+      stroke-width: 1
+    }
+
+    .site-label-sm {
+      font-size: 8px;
+      fill: var(--text3);
+      font-family: system-ui;
+      pointer-events: none;
+    }
+
+    .site-label-md {
+      font-size: 11px;
+      fill: var(--text2);
+      font-family: system-ui;
+      font-weight: 600;
+      pointer-events: none;
+    }
+
+    .well-dot {
+      cursor: pointer
+    }
+
+    /* Tele cards */
+    .tele-g {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+      margin-top: 4px
+    }
+
+    .tele-c {
+      background: var(--bg3);
+      border: 1px solid var(--border2);
+      border-radius: 6px;
+      padding: 8px 10px;
+      transition: border-color 0.3s
+    }
+
+    .tele-c:hover {
+      border-color: rgba(0, 174, 239, 0.3)
+    }
+
+    .tele-lbl {
+      font-size: 9px;
+      color: var(--text3);
+      margin-bottom: 2px
+    }
+
+    .tele-val {
+      font-size: 17px;
+      font-weight: 600
+    }
+
+    .tele-unit {
+      font-size: 10px;
+      color: var(--text3);
+      font-weight: 400;
+      margin-left: 2px
+    }
+
+    .spark-row {
+      display: flex;
+      align-items: flex-end;
+      gap: 2px;
+      height: 22px;
+      margin-top: 5px
+    }
+
+    .sb {
+      flex: 1;
+      border-radius: 1px;
+      min-height: 2px;
+      transition: height 0.3s ease
+    }
+
+    /* AI sidebar */
+    .ai-side {
+      overflow-y: auto
+    }
+
+    .ai-ring-wrap {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 10px
+    }
+
+    .ai-card {
+      background: var(--bg3);
+      border-radius: 6px;
+      padding: 8px 10px;
+      margin-bottom: 6px;
+      border-left: 2px solid transparent
+    }
+
+    .ai-card.blue {
+      border-left-color: var(--blue)
+    }
+
+    .ai-card.amber {
+      border-left-color: var(--amber)
+    }
+
+    .ai-card.red {
+      border-left-color: var(--red)
+    }
+
+    .ai-card.teal {
+      border-left-color: var(--teal)
+    }
+
+    .ai-card.purple {
+      border-left-color: var(--purple)
+    }
+
+    .ai-card-type {
+      font-size: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: var(--text3);
+      margin-bottom: 3px
+    }
+
+    .ai-card-text {
+      font-size: 11px;
+      color: #cbd5e1;
+      line-height: 1.5
+    }
+
+    .ai-card-meta {
+      font-size: 9px;
+      color: var(--text3);
+      margin-top: 3px
+    }
+
+    .ai-btn-row {
+      display: flex;
+      gap: 5px;
+      margin-top: 8px
+    }
+
+    .ai-btn {
+      flex: 1;
+      padding: 8px 6px;
+      background: linear-gradient(180deg, var(--bg2) 0%, var(--bg4) 100%);
+      border: 1px solid var(--border2);
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--teal);
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      font-family: 'Poppins', sans-serif;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    }
+
+    .ai-btn:hover {
+      background: linear-gradient(180deg, rgba(0, 174, 239, 0.05) 0%, rgba(0, 174, 239, 0.15) 100%);
+      border-color: rgba(0, 174, 239, 0.4);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 8px rgba(0, 174, 239, 0.15);
+    }
+
+    /* Bottom row */
+    .bot-row {
+      display: grid;
+      grid-template-columns: 260px 1fr 280px;
+      gap: 24px;
+      padding: 0 24px 24px 24px;
+      background: var(--bg);
+    }
+
+    .site-sum-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 5px 8px;
+      background: var(--bg3);
+      border-radius: 4px;
+      margin-bottom: 4px
+    }
+
+    .site-sum-row.warn {
+      border: 1px solid rgba(245, 158, 11, 0.2)
+    }
+
+    .site-sum-row.crit {
+      border: 1px solid rgba(239, 68, 68, 0.2)
+    }
+
+    .ai-tags-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      padding: 6px 0
+    }
+
+    .ai-tag {
+      font-size: 10px;
+      padding: 3px 8px;
+      border-radius: 3px;
+      border: 1px solid var(--border2);
+      color: var(--text2);
+      background: var(--bg3)
+    }
+
+    .ai-tag.r {
+      border-color: rgba(239, 68, 68, 0.4);
+      color: var(--red);
+      background: rgba(239, 68, 68, 0.05)
+    }
+
+    .ai-tag.a {
+      border-color: rgba(245, 158, 11, 0.4);
+      color: var(--amber);
+      background: rgba(245, 158, 11, 0.05)
+    }
+
+    .ai-tag.g {
+      border-color: rgba(0, 174, 239, 0.4);
+      color: var(--teal);
+      background: rgba(0, 174, 239, 0.05)
+    }
+
+    .ai-tag.b {
+      border-color: rgba(0, 174, 239, 0.4);
+      color: var(--teal);
+      background: rgba(0, 174, 239, 0.05)
+    }
+
+    .ai-engine-footer {
+      padding: 6px 0 0;
+      border-top: 1px solid var(--border);
+      margin-top: 6px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 9px;
+      color: var(--text3)
+    }
+
+    /* ---- PAGE 2: WELL DETAIL ---- */
+    .wd-grid {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 1px;
+      background: var(--border)
+    }
+
+    .wd-left {
+      background: var(--bg2);
+      padding: 14px
+    }
+
+    .wd-right {
+      background: var(--bg2);
+      padding: 14px
+    }
+
+    .well-hero {
+      background: var(--bg3);
+      border-radius: 8px;
+      padding: 14px;
+      margin-bottom: 12px;
+      border: 1px solid var(--border2)
+    }
+
+    .well-hero-top {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px
+    }
+
+    .well-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 8px;
+      background: rgba(0, 174, 239, 0.1);
+      border: 1px solid rgba(0, 174, 239, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center
+    }
+
+    .well-icon svg {
+      width: 22px;
+      height: 22px
+    }
+
+    .dyn-chart-wrap {
+      position: relative;
+      height: 160px
+    }
+
+    .param-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px
+    }
+
+    .param-card {
+      background: var(--bg3);
+      border: 1px solid var(--border2);
+      border-radius: 6px;
+      padding: 10px
+    }
+
+    .param-label {
+      font-size: 9px;
+      color: var(--text3);
+      margin-bottom: 2px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px
+    }
+
+    .param-val {
+      font-size: 18px;
+      font-weight: 600
+    }
+
+    .param-trend {
+      font-size: 10px;
+      margin-top: 2px
+    }
+
+    /* ---- PAGE 3: AI ENGINE ---- */
+    .ai-pg-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1px;
+      background: var(--border)
+    }
+
+    .anom-list {
+      background: var(--bg2);
+      padding: 14px
+    }
+
+    .anom-item {
+      background: var(--bg3);
+      border-radius: 6px;
+      padding: 10px;
+      margin-bottom: 6px;
+      border: 1px solid var(--border2);
+      cursor: pointer;
+      transition: border-color 0.2s
+    }
+
+    .anom-item:hover {
+      border-color: var(--blue)
+    }
+
+    .anom-item.active {
+      border-color: var(--purple);
+      background: rgba(124, 58, 237, 0.06)
+    }
+
+    .anom-hdr {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 5px
+    }
+
+    .anom-id {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text)
+    }
+
+    .conf-bar-wrap {
+      height: 4px;
+      background: var(--border2);
+      border-radius: 2px;
+      margin-top: 6px;
+      overflow: hidden
+    }
+
+    .conf-bar {
+      height: 100%;
+      border-radius: 2px
+    }
+
+    .ai-graph-panel {
+      background: var(--bg2);
+      padding: 14px
+    }
+
+    .ai-recs-panel {
+      background: var(--bg2);
+      padding: 14px
+    }
+
+    .rec-item {
+      background: var(--bg3);
+      border-radius: 6px;
+      padding: 10px;
+      margin-bottom: 6px;
+      border: 1px solid var(--border2)
+    }
+
+    .rec-hdr {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 5px
+    }
+
+    .rec-icon {
+      width: 26px;
+      height: 26px;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px
+    }
+
+    .priority-chip {
+      font-size: 9px;
+      padding: 2px 7px;
+      border-radius: 10px;
+      margin-left: auto
+    }
+
+    .p-high {
+      background: rgba(239, 68, 68, 0.1);
+      color: var(--red);
+      border: 1px solid rgba(239, 68, 68, 0.3)
+    }
+
+    .p-med {
+      background: rgba(245, 158, 11, 0.1);
+      color: var(--amber);
+      border: 1px solid rgba(245, 158, 11, 0.3)
+    }
+
+    .p-low {
+      background: rgba(0, 174, 239, 0.1);
+      color: var(--teal);
+      border: 1px solid rgba(0, 174, 239, 0.3)
+    }
+
+    /* ---- PAGE 4: REPORTS ---- */
+    .rep-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border)
+    }
+
+    .rep-panel {
+      background: var(--bg2);
+      padding: 14px
+    }
+
+    /* ---- MODAL ---- */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(4px);
+      z-index: 999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.2s
+    }
+
+    .modal-overlay.active {
+      display: flex;
+      opacity: 1
+    }
+
+    .modal-box {
+      background: var(--bg2);
+      border: 1px solid var(--border2);
+      border-radius: 10px;
+      width: 380px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      transform: translateY(10px);
+      transition: transform 0.2s
+    }
+
+    .modal-overlay.active .modal-box {
+      transform: translateY(0)
+    }
+
+    .m-hdr {
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center
+    }
+
+    .m-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text)
+    }
+
+    .m-close {
+      background: transparent;
+      border: none;
+      color: var(--text3);
+      cursor: pointer;
+      font-size: 18px
+    }
+
+    .m-close:hover {
+      color: var(--text)
+    }
+
+    .m-body {
+      padding: 20px
+    }
+
+    .m-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px
+    }
+
+    .m-lbl {
+      font-size: 12px;
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      gap: 2px
+    }
+
+    .m-desc {
+      font-size: 10px;
+      color: var(--text3)
+    }
+
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 36px;
+      height: 20px
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: var(--bg4);
+      transition: .2s;
+      border-radius: 20px;
+      border: 1px solid var(--border2)
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 14px;
+      width: 14px;
+      left: 2px;
+      bottom: 2px;
+      background-color: var(--text3);
+      transition: .2s;
+      border-radius: 50%
+    }
+
+    input:checked+.slider {
+      background-color: rgba(0, 174, 239, 0.2);
+      border-color: var(--teal)
+    }
+
+    input:checked+.slider:before {
+      transform: translateX(16px);
+      background-color: var(--teal)
+    }
+
+    .range-slider {
+      width: 120px;
+      appearance: none;
+      height: 4px;
+      background: var(--bg4);
+      border-radius: 2px;
+      outline: none
+    }
+
+    .range-slider::-webkit-slider-thumb {
+      appearance: none;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--teal);
+      cursor: pointer
+    }
+
+    /* Utility */
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 10px 0
+    }
+
+    .section-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 8px
+    }
+
+    .text-teal {
+      color: var(--teal)
+    }
+
+    .text-amber {
+      color: var(--amber)
+    }
+
+    .text-red {
+      color: var(--red)
+    }
+
+    .text-blue {
+      color: var(--teal)
+    }
+
+    .text-muted {
+      color: var(--text2)
+    }
+
+    .text-dim {
+      color: var(--text3)
+    }
+
+    .fw6 {
+      font-weight: 600
+    }
+
+    .scrollable {
+      overflow-y: auto;
+      flex: 1;
+      min-height: 0;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="nav">
+    <div class="nav-logo">
+      <img src="https://www.hikartech.com/wp-content/uploads/2025/12/Hikar-Header-Logo.png" alt="Hikar" style="height: 24px; margin-right: 4px;">
+      <div class="logo-prod">SIEN™ DigiOps Platform</div>
+    </div>
+    <div class="nav-tabs">
+      <button class="nav-tab active" onclick="showPage('overview',this)">Overview</button>
+      <button class="nav-tab" onclick="showPage('welldetail',this)">Well Detail</button>
+      <button class="nav-tab" onclick="showPage('aiengine',this)">AI Engine</button>
+      <button class="nav-tab" onclick="showPage('reports',this)">Reports</button>
+    </div>
+    <div class="nav-right">
+      <div class="live-chip">
+        <div class="live-dot" style="animation:pulse 1.5s infinite"></div>Live · 128 assets
+      </div>
+      <div class="nav-clock" id="nclock">04/20/2026 · 09:14 MST</div>
+      <div class="nav-avatar">OP</div>
+      <div style="cursor:pointer;color:var(--text3);margin-left:5px;display:flex;align-items:center;"
+        onclick="toggleModal()" title="Simulation Config">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="3"></circle>
+          <path
+            d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z">
+          </path>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== PAGE 1: OVERVIEW ===== -->
+  <div id="pg-overview" class="page active">
+
+    <div class="kpi-strip">
+      <div class="kpi">
+        <div class="kpi-lbl">Total Wells</div>
+        <div class="kpi-num">128</div>
+        <div class="kpi-badge badge-flat">4 sites monitored</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-lbl">Running</div>
+        <div class="kpi-num teal" id="kpi-run">104</div>
+        <div class="kpi-badge badge-up">81.2% fleet active</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-lbl">Warnings</div>
+        <div class="kpi-num amber">14</div>
+        <div class="kpi-badge badge-down">+3 vs yesterday</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-lbl">Critical</div>
+        <div class="kpi-num red">6</div>
+        <div class="kpi-badge badge-down">Immediate action</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-lbl">Production</div>
+        <div class="kpi-num blue" id="kpi-prod">12,450</div>
+        <div class="kpi-badge badge-up text-teal">bbl/day · +2.4%</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-lbl">AI Fleet Health</div>
+        <div class="kpi-num purple">87%</div>
+        <div class="kpi-badge badge-flat">SIEN™ DigiOps active</div>
+      </div>
+    </div>
+
+    <div class="ov-grid">
+      <!-- Asset list -->
+      <div class="panel">
+        <div class="p-hdr">Asset monitor <span class="p-hdr-badge">Live</span></div>
+        <div id="asset-list" style="flex: 1; min-height: 0; overflow-x: hidden; overflow-y: auto; padding-right: 8px; margin-top: 12px;"></div>
+      </div>
+
+      <!-- Map -->
+      <div class="panel map-wrap" style="padding:0;min-height:360px;">
+        <svg class="map-svg" viewBox="0 0 500 360" id="mapsvg">
+          <defs>
+            <radialGradient id="glowG" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#00AEEF" stop-opacity="0.05" />
+              <stop offset="100%" stop-color="#00AEEF" stop-opacity="0" />
+            </radialGradient>
+            <radialGradient id="glowA" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.05" />
+              <stop offset="100%" stop-color="#f59e0b" stop-opacity="0" />
+            </radialGradient>
+            <radialGradient id="glowR" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#ef4444" stop-opacity="0.05" />
+              <stop offset="100%" stop-color="#ef4444" stop-opacity="0" />
+            </radialGradient>
+          </defs>
+          <!-- Grid -->
+          <rect width="500" height="360" fill="transparent" />
+          <line x1="0" y1="60" x2="500" y2="60" class="grid-line" />
+          <line x1="0" y1="120" x2="500" y2="120" class="grid-line" />
+          <line x1="0" y1="180" x2="500" y2="180" class="grid-line" />
+          <line x1="0" y1="240" x2="500" y2="240" class="grid-line" />
+          <line x1="0" y1="300" x2="500" y2="300" class="grid-line" />
+          <line x1="100" y1="0" x2="100" y2="360" class="grid-line" />
+          <line x1="200" y1="0" x2="200" y2="360" class="grid-line" />
+          <line x1="300" y1="0" x2="300" y2="360" class="grid-line" />
+          <line x1="400" y1="0" x2="400" y2="360" class="grid-line" />
+          <!-- Pipelines -->
+          <path d="M 115 175 Q 200 150 280 160" class="pipe" />
+          <path d="M 280 160 Q 350 130 420 100" class="pipe" />
+          <path d="M 280 160 L 390 230" class="pipe" />
+          <path d="M 115 175 L 85 260" class="pipe" />
+          <!-- Site glows -->
+          <circle cx="115" cy="175" r="55" fill="url(#glowG)" />
+          <circle cx="280" cy="160" r="45" fill="url(#glowG)" />
+          <circle cx="420" cy="100" r="38" fill="url(#glowA)" />
+          <circle cx="390" cy="230" r="35" fill="url(#glowR)" />
+          <!-- Calgary cluster -->
+          <g style="cursor:pointer; transition: opacity 0.2s;" onclick="filterAssetList('Calgary Field')" onmouseover="this.style.opacity=0.7" onmouseout="this.style.opacity=1">
+            <circle cx="115" cy="175" r="24" fill="rgba(0,174,239,0.04)" stroke="#00AEEF" stroke-width="0.8" />
+            <text x="115" y="142" class="site-label-md" text-anchor="middle">Calgary Field</text>
+            <text x="115" y="150" class="site-label-sm" text-anchor="middle">15 wells</text>
+            <circle cx="88" cy="178" r="5.5" fill="#00AEEF" class="well-dot" opacity="0.9" />
+            <circle cx="100" cy="168" r="5.5" fill="#00AEEF" class="well-dot" opacity="0.9" />
+            <circle cx="114" cy="183" r="5.5" fill="#f59e0b" class="well-dot" opacity="0.9" />
+            <circle cx="128" cy="174" r="5.5" fill="#00AEEF" class="well-dot" opacity="0.9" />
+            <circle cx="95" cy="188" r="4.5" fill="#ef4444" class="well-dot" opacity="0.9" />
+            <circle cx="125" cy="186" r="4.5" fill="#00AEEF" class="well-dot" opacity="0.9" />
+            <circle cx="107" cy="172" r="4" fill="#00AEEF" class="well-dot" opacity="0.9" />
+          </g>
+          <!-- Pembina -->
+          <g style="cursor:pointer; transition: opacity 0.2s;" onclick="filterAssetList('Pembina')" onmouseover="this.style.opacity=0.7" onmouseout="this.style.opacity=1">
+            <circle cx="280" cy="160" r="20" fill="rgba(0,174,239,0.04)" stroke="#00AEEF" stroke-width="0.8" />
+            <text x="280" y="130" class="site-label-md" text-anchor="middle">Pembina</text>
+            <text x="280" y="138" class="site-label-sm" text-anchor="middle">12 wells</text>
+            <circle cx="262" cy="163" r="5" fill="#00AEEF" opacity="0.9" />
+            <circle cx="275" cy="170" r="5" fill="#00AEEF" opacity="0.9" />
+            <circle cx="290" cy="162" r="4.5" fill="#f59e0b" opacity="0.9" />
+            <circle cx="298" cy="170" r="4.5" fill="#00AEEF" opacity="0.9" />
+          </g>
+          <!-- Red Deer -->
+          <g style="cursor:pointer; transition: opacity 0.2s;" onclick="filterAssetList('Red Deer')" onmouseover="this.style.opacity=0.7" onmouseout="this.style.opacity=1">
+            <circle cx="420" cy="100" r="17" fill="rgba(245,158,11,0.04)" stroke="#f59e0b" stroke-width="0.8" />
+            <text x="420" y="72" class="site-label-md" text-anchor="middle">Red Deer</text>
+            <text x="420" y="80" class="site-label-sm" text-anchor="middle">8 wells</text>
+            <circle cx="407" cy="103" r="4.5" fill="#f59e0b" opacity="0.9" />
+            <circle cx="420" cy="108" r="4.5" fill="#00AEEF" opacity="0.9" />
+            <circle cx="433" cy="100" r="4.5" fill="#ef4444" opacity="0.9" />
+          </g>
+          <!-- Remote S -->
+          <g style="cursor:pointer; transition: opacity 0.2s;" onclick="filterAssetList('Remote S')" onmouseover="this.style.opacity=0.7" onmouseout="this.style.opacity=1">
+            <circle cx="390" cy="230" r="16" fill="rgba(239,68,68,0.04)" stroke="#ef4444" stroke-width="0.8" />
+            <text x="390" y="202" class="site-label-md" text-anchor="middle">Remote South</text>
+            <text x="390" y="210" class="site-label-sm" text-anchor="middle">5 wells</text>
+            <circle cx="378" cy="233" r="4.5" fill="#ef4444" opacity="0.9" />
+            <circle cx="392" cy="240" r="4.5" fill="#f59e0b" opacity="0.9" />
+            <circle cx="403" cy="228" r="4.5" fill="#ef4444" opacity="0.9" />
+          </g>
+          <!-- Lethbridge -->
+          <circle cx="85" cy="265" r="13" fill="rgba(0,174,239,0.03)" stroke="#00AEEF" stroke-width="0.5" />
+          <text x="85" y="248" class="site-label-sm" text-anchor="middle">Lethbridge</text>
+          <circle cx="78" cy="268" r="3.5" fill="#00AEEF" opacity="0.7" />
+          <circle cx="90" cy="264" r="3.5" fill="#00AEEF" opacity="0.7" />
+          <!-- AI scan pulse -->
+          <circle id="ai-scan" cx="280" cy="160" r="20" fill="none" stroke="#7c3aed" stroke-width="0.8" opacity="0.6" />
+          <!-- Map label -->
+          <text x="12" y="20" class="site-label-sm" fill="#94a3b8">FIELD MAP · ALBERTA OPERATIONS</text>
+          <!-- Legend -->
+          <circle cx="340" cy="342" r="4" fill="#00AEEF" /><text x="349" y="346" class="site-label-sm">Normal</text>
+          <circle cx="385" cy="342" r="4" fill="#f59e0b" /><text x="394" y="346" class="site-label-sm">Warning</text>
+          <circle cx="432" cy="342" r="4" fill="#ef4444" /><text x="441" y="346" class="site-label-sm">Critical</text>
+        </svg>
+      </div>
+
+      <!-- AI Sidebar -->
+      <div class="panel ai-side">
+        <div class="p-hdr">SIEN™ AI Engine</div>
+        <div class="ai-ring-wrap">
+          <svg width="90" height="90" viewBox="0 0 90 90">
+            <circle cx="45" cy="45" r="36" fill="none" stroke="#cbd5e1" stroke-width="7" />
+            <circle cx="45" cy="45" r="36" fill="none" stroke="#7c3aed" stroke-width="7" stroke-dasharray="196 226"
+              stroke-dashoffset="56" stroke-linecap="round" transform="rotate(-90 45 45)" />
+            <text x="45" y="41" text-anchor="middle" font-size="18" font-weight="700" fill="#7c3aed"
+              font-family="system-ui">87</text>
+            <text x="45" y="53" text-anchor="middle" font-size="8" fill="#4a5a7a" font-family="system-ui">Fleet
+              Health</text>
+          </svg>
+        </div>
+        <div class="ai-card red">
+          <div class="ai-card-type">Anomaly · Critical</div>
+          <div class="ai-card-text">PJ-103 rod load variance 2.4σ — bearing failure in 3–5 days</div>
+          <div class="ai-card-meta">Confidence: 91% · 14 min ago</div>
+        </div>
+        <div class="ai-card amber">
+          <div class="ai-card-type">Predictive Maintenance</div>
+          <div class="ai-card-text">5 assets scheduled within 10 days by vibration trends</div>
+          <div class="ai-card-meta">Next: PJ-107, PJ-112</div>
+        </div>
+        <div class="ai-card teal">
+          <div class="ai-card-type">Pattern Recognition</div>
+          <div class="ai-card-text">PJ-110 &amp; PJ-115 outperforming by 8% — optimal stroke config detected</div>
+          <div class="ai-card-meta">Apply to 6 similar wells</div>
+        </div>
+        <div class="ai-card blue">
+          <div class="ai-card-type">Energy Optimization</div>
+          <div class="ai-card-text">PJ-108 off-peak shift saves ~$1,240/mo, zero production impact</div>
+          <div class="ai-card-meta">Low risk · Schedulable</div>
+        </div>
+        <div class="ai-card purple">
+          <div class="ai-card-type">Fleet Insight</div>
+          <div class="ai-card-text">12% avg performance drop in last 24h — Remote South cluster</div>
+          <div class="ai-card-meta">Root cause: communication lag</div>
+        </div>
+        <div class="ai-btn-row">
+          <div class="ai-btn"
+            onclick="sendPrompt('Explain the PJ-103 anomaly in detail and give me recommended actions')">Explain Alert ↗
+          </div>
+          <div class="ai-btn"
+            onclick="sendPrompt('Show predictive maintenance schedule for next 10 days for all flagged assets')">Maint.
+            Plan ↗</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Telemetry strip between map and bottom -->
+    <div style="padding: 0 24px 24px 24px; background: var(--bg);">
+      <div class="panel" style="padding: 24px; border-radius: 16px; box-shadow: 0 4px 24px rgba(0, 0, 0, 0.03);">
+        <div class="p-hdr" style="margin-bottom: 20px; font-size: 13px; font-weight: 600; color: var(--text); border-bottom: 1px solid var(--border); padding-bottom: 12px;">
+          Real-time telemetry — <span id="tele-asset-title" style="color:var(--teal);margin-left:4px;">PJ-101 (selected)</span> 
+          <span class="p-hdr-badge" style="margin-left:auto; font-size: 10px; font-weight: normal;">Live · 5s refresh</span>
+        </div>
+        <div class="tele-g" style="gap: 24px;">
+        <div class="tele-c">
+          <div class="tele-lbl">Strokes / min</div>
+          <div class="tele-val text-blue" id="val-spm">6.4<span class="tele-unit">spm</span></div>
+          <div class="spark-row" id="s-spm"></div>
+        </div>
+        <div class="tele-c">
+          <div class="tele-lbl">Fluid Level</div>
+          <div class="tele-val text-teal" id="val-fl">1,847<span class="tele-unit">ft</span></div>
+          <div class="spark-row" id="s-fl"></div>
+        </div>
+        <div class="tele-c">
+          <div class="tele-lbl">Motor Load</div>
+          <div class="tele-val text-amber" id="val-ml">72<span class="tele-unit">%</span></div>
+          <div class="spark-row" id="s-ml"></div>
+        </div>
+        <div class="tele-c">
+          <div class="tele-lbl">Casing Pressure</div>
+          <div class="tele-val" style="color:var(--text2)" id="val-cp">48<span class="tele-unit">psi</span></div>
+          <div class="spark-row" id="s-cp"></div>
+        </div>
+        <div class="tele-c">
+          <div class="tele-lbl">Rod Load</div>
+          <div class="tele-val text-teal" id="val-rl">18,240<span class="tele-unit">lbs</span></div>
+          <div class="spark-row" id="s-rl"></div>
+        </div>
+        <div class="tele-c">
+          <div class="tele-lbl">Downhole Temp</div>
+          <div class="tele-val text-amber" id="val-tp">124<span class="tele-unit">°C</span></div>
+          <div class="spark-row" id="s-tp"></div>
+        </div>
+      </div>
+    </div>
+    </div>
+    <div class="bot-row">
+      <div class="panel">
+        <div class="p-hdr">Site summary</div>
+        <div class="site-sum-row"><span style="font-size:11px;color:var(--text)">Calgary Field</span><span
+            style="font-size:10px;color:var(--teal)">14/15 running</span></div>
+        <div class="site-sum-row"><span style="font-size:11px;color:var(--text)">Pembina Site</span><span
+            style="font-size:10px;color:#60a5fa">11/12 running</span></div>
+        <div class="site-sum-row warn"><span style="font-size:11px;color:var(--text)">Red Deer</span><span
+            style="font-size:10px;color:var(--amber)">6/8 · 2 warn</span></div>
+        <div class="site-sum-row crit"><span style="font-size:11px;color:var(--text)">Remote South</span><span
+            style="font-size:10px;color:var(--red)">3/5 · 2 crit</span></div>
+      </div>
+      <div class="panel">
+        <div class="p-hdr">Production vs energy — 7-day <span class="text-dim">bbl/day · MWh</span></div>
+        <div style="position:relative;height:110px"><canvas id="prodChart" role="img"
+            aria-label="7 day production and energy trend">Production 11200 to 12450 bbl/day over 7 days.</canvas></div>
+      </div>
+      <div class="panel">
+        <div class="p-hdr">AI active flags</div>
+        <div class="ai-tags-wrap">
+          <span class="ai-tag r">PJ-103 Bearing</span>
+          <span class="ai-tag a">PJ-107 Overload</span>
+          <span class="ai-tag a">PJ-112 Vibration</span>
+          <span class="ai-tag g">PJ-110 Optimal</span>
+          <span class="ai-tag g">PJ-115 Optimal</span>
+          <span class="ai-tag b">PJ-108 Energy</span>
+          <span class="ai-tag a">RS-04 Offline Risk</span>
+          <span class="ai-tag r">RS-07 Critical</span>
+        </div>
+        <div class="ai-engine-footer"><span>SIEN-DigiOps v3.1</span><span style="color:#7c3aed">AI active · 128
+            nodes</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== PAGE 2: WELL DETAIL ===== -->
+  <div id="pg-welldetail" class="page">
+    <div
+      style="background:var(--bg2);border-bottom:1px solid var(--border);padding:10px 16px;display:flex;align-items:center;gap:12px">
+      <div style="font-size:11px;color:var(--text3)">Selected Well:</div>
+      <select id="well-select"
+        style="background:var(--bg3);border:1px solid var(--border2);color:var(--text);border-radius:5px;padding:4px 10px;font-size:12px"
+        onchange="updateWellDetail()">
+        <option>PJ-101 — Calgary Field</option>
+        <option>PJ-102 — Calgary Field</option>
+        <option>PJ-103 — Calgary Field (Critical)</option>
+        <option>PJ-110 — Pembina (Optimal)</option>
+        <option>RS-07 — Remote South (Critical)</option>
+      </select>
+      <div style="margin-left:auto;font-size:11px;color:var(--text3)">Click any well in the asset list to drill down
+      </div>
+    </div>
+    <div class="wd-grid">
+      <div class="wd-left">
+        <div class="well-hero">
+          <div class="well-hero-top">
+            <div class="well-icon">
+              <svg viewBox="0 0 22 22" fill="none" stroke="#00d4aa" stroke-width="1.5">
+                <rect x="9" y="2" width="4" height="14" rx="1" />
+                <path d="M7 16 L11 20 L15 16" />
+                <line x1="4" y1="8" x2="7" y2="8" />
+                <line x1="15" y1="8" x2="18" y2="8" />
+              </svg>
+            </div>
+            <div>
+              <div style="font-size:16px;font-weight:700;color:var(--text)" id="wd-title">PJ-101</div>
+              <div style="font-size:11px;color:var(--text3)" id="wd-site">Calgary Field · Running</div>
+            </div>
+            <div style="margin-left:auto;text-align:right">
+              <div style="font-size:22px;font-weight:700" id="wd-eff" class="text-teal">92%</div>
+              <div style="font-size:10px;color:var(--text3)">Efficiency</div>
+            </div>
+          </div>
+          <div class="param-grid">
+            <div class="param-card">
+              <div class="param-label">SPM</div>
+              <div class="param-val text-blue">6.4<span style="font-size:11px;color:var(--text3)"> spm</span></div>
+              <div class="param-trend text-teal">+0.2 from avg</div>
+            </div>
+            <div class="param-card">
+              <div class="param-label">Rod Load</div>
+              <div class="param-val text-teal">18,240<span style="font-size:11px;color:var(--text3)"> lbs</span></div>
+              <div class="param-trend text-dim">Within normal</div>
+            </div>
+            <div class="param-card">
+              <div class="param-label">Motor Load</div>
+              <div class="param-val text-amber">72<span style="font-size:11px;color:var(--text3)"> %</span></div>
+              <div class="param-trend text-amber">Moderate</div>
+            </div>
+            <div class="param-card">
+              <div class="param-label">Fluid Level</div>
+              <div class="param-val" style="color:var(--text2)">1,847<span style="font-size:11px;color:var(--text3)">
+                  ft</span></div>
+              <div class="param-trend text-dim">Stable</div>
+            </div>
+            <div class="param-card">
+              <div class="param-label">Casing Press.</div>
+              <div class="param-val" style="color:var(--text2)">48<span style="font-size:11px;color:var(--text3)"> psi</span>
+              </div>
+              <div class="param-trend text-dim">Nominal</div>
+            </div>
+            <div class="param-card">
+              <div class="param-label">Downhole Temp</div>
+              <div class="param-val text-amber">124<span style="font-size:11px;color:var(--text3)"> °C</span></div>
+              <div class="param-trend text-dim">Normal range</div>
+            </div>
+          </div>
+        </div>
+        <div style="background:var(--bg3);border-radius:6px;padding:10px;border:1px solid rgba(0,212,170,0.15)">
+          <div style="font-size:9px;text-transform:uppercase;letter-spacing:0.6px;color:var(--text3);margin-bottom:6px">
+            AI Well Assessment</div>
+          <div style="font-size:11px;color:var(--text);line-height:1.6">No anomalies detected. PJ-101 is performing within
+            optimal parameters. Rod load variance: <span class="text-teal">0.3σ</span>. Predicted production continuity:
+            <span class="text-teal">14+ days</span> with no intervention required.</div>
+          <div style="margin-top:8px;display:flex;gap:6px">
+            <div class="ai-btn"
+              onclick="sendPrompt('Generate a full health report for well PJ-101 including production forecast and maintenance recommendations')">
+              Full Report ↗</div>
+            <div class="ai-btn"
+              onclick="sendPrompt('What optimization actions can improve PJ-101 production beyond 92% efficiency?')">
+              Optimize ↗</div>
+          </div>
+        </div>
+      </div>
+      <div class="wd-right">
+        <div class="p-hdr">Dynagraph — real-time surface card <span class="p-hdr-badge">Updating · 1s</span></div>
+        <div class="dyn-chart-wrap" style="margin-bottom:14px"><canvas id="dynaChart" role="img"
+            aria-label="Dynagraph surface card for PJ-101">Rod load vs position dynagraph showing normal operating
+            envelope.</canvas></div>
+        <div class="p-hdr" style="margin-top:8px">24-hour production trend <span class="text-dim">bbl/hr</span></div>
+        <div style="position:relative;height:130px"><canvas id="wellTrendChart" role="img"
+            aria-label="24 hour production trend">Production stable around 13 bbl/hr over 24 hours.</canvas></div>
+        <div class="divider"></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:6px">
+          <div style="background:var(--bg3);border-radius:6px;padding:10px;text-align:center">
+            <div style="font-size:9px;color:var(--text3);margin-bottom:4px">Today's Prod.</div>
+            <div style="font-size:20px;font-weight:700;color:#60a5fa">312</div>
+            <div style="font-size:9px;color:var(--text3)">bbl</div>
+          </div>
+          <div style="background:var(--bg3);border-radius:6px;padding:10px;text-align:center">
+            <div style="font-size:9px;color:var(--text3);margin-bottom:4px">Runtime</div>
+            <div style="font-size:20px;font-weight:700;color:var(--teal)">23.4</div>
+            <div style="font-size:9px;color:var(--text3)">hrs today</div>
+          </div>
+          <div style="background:var(--bg3);border-radius:6px;padding:10px;text-align:center">
+            <div style="font-size:9px;color:var(--text3);margin-bottom:4px">Next Service</div>
+            <div style="font-size:20px;font-weight:700;color:var(--amber)">18</div>
+            <div style="font-size:9px;color:var(--text3)">days</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== PAGE 3: AI ENGINE ===== -->
+  <div id="pg-aiengine" class="page">
+    <div
+      style="background:var(--bg2);border-bottom:1px solid var(--border);padding:10px 16px;display:flex;align-items:center;gap:16px">
+      <div style="font-size:13px;font-weight:600;color:var(--text)">SIEN™ AI Engine — DigiOps Intelligence</div>
+      <div style="margin-left:auto;display:flex;gap:8px;align-items:center">
+        <span style="font-size:10px;color:var(--text3)">Model: SIEN-DigiOps v3.1</span>
+        <span
+          style="font-size:10px;padding:3px 10px;background:rgba(124,58,237,0.1);border:1px solid rgba(124,58,237,0.3);border-radius:10px;color:#7c3aed">Active
+          · 128 nodes</span>
+      </div>
+    </div>
+    <div class="ai-pg-grid">
+      <!-- Anomaly list -->
+      <div class="anom-list">
+        <div class="p-hdr">Anomaly detection queue <span class="p-hdr-badge">8 flags</span></div>
+        <div class="anom-item active"
+          onclick="selectAnom(this,'PJ-103','Bearing Failure','rod load variance exceeded 2.4σ over 6h window. Spectral analysis shows harmonic at 12Hz matching early bearing wear signature.','91','Critical','3–5 days')">
+          <div class="anom-hdr"><span class="anom-id">PJ-103</span><span class="ai-tag r"
+              style="font-size:9px;padding:2px 7px">Critical</span></div>
+          <div style="font-size:11px;color:var(--text2)">Rod load variance · 2.4σ</div>
+          <div style="font-size:10px;color:var(--text3);margin-top:2px">Bearing failure predicted · 3–5 days</div>
+          <div class="conf-bar-wrap">
+            <div class="conf-bar" style="width:91%;background:var(--red)"></div>
+          </div>
+          <div style="font-size:9px;color:var(--text3);margin-top:3px">Confidence: 91%</div>
+        </div>
+        <div class="anom-item"
+          onclick="selectAnom(this,'RS-07','Pump Off Event','fluid level dropped below pump intake. Intermittent pump-off cycling detected over 4h. Fluid resupply rate insufficient for current SPM setting.','85','Critical','Immediate')">
+          <div class="anom-hdr"><span class="anom-id">RS-07</span><span class="ai-tag r"
+              style="font-size:9px;padding:2px 7px">Critical</span></div>
+          <div style="font-size:11px;color:var(--text2)">Pump-off event · Low fluid</div>
+          <div style="font-size:10px;color:var(--text3);margin-top:2px">Immediate SPM reduction recommended</div>
+          <div class="conf-bar-wrap">
+            <div class="conf-bar" style="width:85%;background:var(--red)"></div>
+          </div>
+          <div style="font-size:9px;color:var(--text3);margin-top:3px">Confidence: 85%</div>
+        </div>
+        <div class="anom-item"
+          onclick="selectAnom(this,'PJ-107','Motor Overload','sustained motor load above 88% for 9 consecutive hours. Temperature trending upward at 2.1°C/hr. Insulation degradation risk if unaddressed.','78','Warning','5–7 days')">
+          <div class="anom-hdr"><span class="anom-id">PJ-107</span><span class="ai-tag a"
+              style="font-size:9px;padding:2px 7px">Warning</span></div>
+          <div style="font-size:11px;color:var(--text2)">Motor overload · 88%+ sustained</div>
+          <div style="font-size:10px;color:var(--text3);margin-top:2px">Insulation risk if unresolved</div>
+          <div class="conf-bar-wrap">
+            <div class="conf-bar" style="width:78%;background:var(--amber)"></div>
+          </div>
+          <div style="font-size:9px;color:var(--text3);margin-top:3px">Confidence: 78%</div>
+        </div>
+        <div class="anom-item"
+          onclick="selectAnom(this,'PJ-112','Vibration Anomaly','vibration signature deviating from baseline by 1.8σ on Z-axis. Pattern consistent with gearbox backlash or worn gear teeth. Monitoring escalated.','74','Warning','7–10 days')">
+          <div class="anom-hdr"><span class="anom-id">PJ-112</span><span class="ai-tag a"
+              style="font-size:9px;padding:2px 7px">Warning</span></div>
+          <div style="font-size:11px;color:var(--text2)">Vibration anomaly · Gearbox</div>
+          <div style="font-size:10px;color:var(--text3);margin-top:2px">1.8σ deviation · Z-axis</div>
+          <div class="conf-bar-wrap">
+            <div class="conf-bar" style="width:74%;background:var(--amber)"></div>
+          </div>
+          <div style="font-size:9px;color:var(--text3);margin-top:3px">Confidence: 74%</div>
+        </div>
+        <div class="anom-item"
+          onclick="selectAnom(this,'RS-04','Connectivity Degradation','satellite link packet loss rising to 18%. Edge buffer filling. If link drops, 2.5h of buffered data available before gap. Recommend redundant path activation.','70','Warning','Monitor')">
+          <div class="anom-hdr"><span class="anom-id">RS-04</span><span class="ai-tag a"
+              style="font-size:9px;padding:2px 7px">Warning</span></div>
+          <div style="font-size:11px;color:var(--text2)">Connectivity degradation</div>
+          <div style="font-size:10px;color:var(--text3);margin-top:2px">Packet loss 18% · Satellite link</div>
+          <div class="conf-bar-wrap">
+            <div class="conf-bar" style="width:70%;background:var(--amber)"></div>
+          </div>
+          <div style="font-size:9px;color:var(--text3);margin-top:3px">Confidence: 70%</div>
+        </div>
+      </div>
+
+      <!-- AI Analysis panel -->
+      <div class="ai-graph-panel">
+        <div class="p-hdr">Analysis — <span id="anom-title" class="text-teal">PJ-103 · Bearing Failure</span></div>
+        <div
+          style="background:var(--bg3);border-radius:6px;padding:12px;margin-bottom:10px;border-left:3px solid var(--purple)">
+          <div style="font-size:9px;text-transform:uppercase;letter-spacing:0.6px;color:var(--text3);margin-bottom:5px">
+            AI Diagnosis</div>
+          <div style="font-size:12px;color:var(--text);line-height:1.7" id="anom-desc">Rod load variance exceeded 2.4σ over
+            6h window. Spectral analysis shows harmonic at 12Hz matching early bearing wear signature.</div>
+          <div style="margin-top:8px;display:flex;gap:12px">
+            <div style="text-align:center">
+              <div style="font-size:9px;color:var(--text3)">Confidence</div>
+              <div style="font-size:18px;font-weight:700;color:var(--red)" id="anom-conf">91%</div>
+            </div>
+            <div style="text-align:center">
+              <div style="font-size:9px;color:var(--text3)">Severity</div>
+              <div style="font-size:18px;font-weight:700;color:var(--red)" id="anom-sev">Critical</div>
+            </div>
+            <div style="text-align:center">
+              <div style="font-size:9px;color:var(--text3)">Time to Act</div>
+              <div style="font-size:18px;font-weight:700;color:var(--amber)" id="anom-time">3–5 days</div>
+            </div>
+          </div>
+        </div>
+        <div class="p-hdr">Anomaly signal — rod load variance (72h)</div>
+        <div style="position:relative;height:130px"><canvas id="anomChart" role="img"
+            aria-label="Rod load variance signal over 72 hours showing deviation">Rod load variance exceeding 2 sigma
+            threshold at 48-60 hours.</canvas></div>
+        <div style="margin-top:10px">
+          <div class="ai-btn-row">
+            <div class="ai-btn"
+              onclick="sendPrompt('Give me step-by-step repair procedure for PJ-103 bearing failure and parts required')">
+              Repair Procedure ↗</div>
+            <div class="ai-btn"
+              onclick="sendPrompt('What is the estimated downtime and production loss if PJ-103 bearing fails completely?')">
+              Impact Analysis ↗</div>
+            <div class="ai-btn"
+              onclick="sendPrompt('Schedule maintenance for PJ-103 and notify the field crew in Red Deer')">Schedule
+              Work ↗</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recommendations -->
+      <div class="ai-recs-panel">
+        <div class="p-hdr">AI recommendations</div>
+        <div class="rec-item">
+          <div class="rec-hdr">
+            <div class="rec-icon" style="background:rgba(239,68,68,0.1)"><span style="font-size:14px">&#9888;</span>
+            </div>
+            <div>
+              <div style="font-size:11px;font-weight:600;color:var(--text)">Replace PJ-103 bearing</div>
+              <div style="font-size:10px;color:var(--text3)">Within 3 days</div>
+            </div>
+            <div class="priority-chip p-high">High</div>
+          </div>
+          <div style="font-size:11px;color:var(--text2)">Schedule bearing replacement. Parts: 2× SKF 6308-2RS1.
+            Estimated downtime: 6h.</div>
+        </div>
+        <div class="rec-item">
+          <div class="rec-hdr">
+            <div class="rec-icon" style="background:rgba(239,68,68,0.1)"><span style="font-size:14px">&#9660;</span>
+            </div>
+            <div>
+              <div style="font-size:11px;font-weight:600;color:var(--text)">Reduce RS-07 SPM</div>
+              <div style="font-size:10px;color:var(--text3)">Immediate</div>
+            </div>
+            <div class="priority-chip p-high">High</div>
+          </div>
+          <div style="font-size:11px;color:var(--text2)">Reduce strokes/min from 7.2 to 4.8 to prevent pump-off damage.
+          </div>
+        </div>
+        <div class="rec-item">
+          <div class="rec-hdr">
+            <div class="rec-icon" style="background:rgba(245,158,11,0.1)"><span style="font-size:14px">&#9881;</span>
+            </div>
+            <div>
+              <div style="font-size:11px;font-weight:600;color:var(--text)">Inspect PJ-107 motor</div>
+              <div style="font-size:10px;color:var(--text3)">Within 5 days</div>
+            </div>
+            <div class="priority-chip p-med">Med</div>
+          </div>
+          <div style="font-size:11px;color:var(--text2)">Check winding insulation and cooling fan. Consider load
+            reduction.</div>
+        </div>
+        <div class="rec-item">
+          <div class="rec-hdr">
+            <div class="rec-icon" style="background:rgba(0,212,170,0.1)"><span style="font-size:14px">&#9650;</span>
+            </div>
+            <div>
+              <div style="font-size:11px;font-weight:600;color:var(--text)">Apply PJ-110 config to 6 wells</div>
+              <div style="font-size:10px;color:var(--text3)">Opportunity</div>
+            </div>
+            <div class="priority-chip p-low">Low</div>
+          </div>
+          <div style="font-size:11px;color:var(--text2)">Replicate optimal stroke config from PJ-110 to
+            PJ-104,106,108,109,113,114. Est. +8% production.</div>
+        </div>
+        <div class="rec-item">
+          <div class="rec-hdr">
+            <div class="rec-icon" style="background:rgba(37,99,235,0.1)"><span style="font-size:14px">&#9889;</span>
+            </div>
+            <div>
+              <div style="font-size:11px;font-weight:600;color:var(--text)">PJ-108 energy schedule</div>
+              <div style="font-size:10px;color:var(--text3)">Cost saving</div>
+            </div>
+            <div class="priority-chip p-low">Low</div>
+          </div>
+          <div style="font-size:11px;color:var(--text2)">Shift to off-peak hours. Save $1,240/mo with zero production
+            impact.</div>
+        </div>
+        <div style="margin-top:8px">
+          <div class="ai-btn" style="display:block;text-align:center"
+            onclick="sendPrompt('Generate a full AI recommendations report with priority order, estimated costs, and ROI for all flagged assets')">
+            Generate Full Action Report ↗</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== PAGE 4: REPORTS ===== -->
+  <div id="pg-reports" class="page">
+    <div class="rep-grid">
+      <div class="rep-panel">
+        <div class="p-hdr">Production performance — 30 days <span class="text-dim">bbl/day</span></div>
+        <div style="position:relative;height:160px"><canvas id="rep1" role="img"
+            aria-label="30 day production performance">Production averaging 11800 to 12450 bbl/day over 30 days with
+            upward trend.</canvas></div>
+        <div class="divider"></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:8px">
+          <div style="background:var(--bg3);border-radius:6px;padding:10px;text-align:center">
+            <div style="font-size:9px;color:var(--text3);margin-bottom:3px">Avg / day</div>
+            <div style="font-size:20px;font-weight:700;color:#60a5fa">11,840</div>
+            <div style="font-size:9px;color:var(--text3)">bbl</div>
+          </div>
+          <div style="background:var(--bg3);border-radius:6px;padding:10px;text-align:center">
+            <div style="font-size:9px;color:var(--text3);margin-bottom:3px">Peak</div>
+            <div style="font-size:20px;font-weight:700;color:var(--teal)">12,650</div>
+            <div style="font-size:9px;color:var(--text3)">bbl</div>
+          </div>
+          <div style="background:var(--bg3);border-radius:6px;padding:10px;text-align:center">
+            <div style="font-size:9px;color:var(--text3);margin-bottom:3px">Total</div>
+            <div style="font-size:20px;font-weight:700;color:#7c3aed">355,200</div>
+            <div style="font-size:9px;color:var(--text3)">bbl/mo</div>
+          </div>
+        </div>
+      </div>
+      <div class="rep-panel">
+        <div class="p-hdr">Fleet efficiency distribution <span class="text-dim">% of wells by efficiency band</span>
+        </div>
+        <div style="position:relative;height:160px"><canvas id="rep2" role="img"
+            aria-label="Fleet efficiency distribution donut chart">43 wells above 90%, 38 wells 75-90%, 28 wells 50-75%,
+            19 wells below 50%.</canvas></div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;justify-content:center">
+          <span style="display:flex;align-items:center;gap:4px;font-size:11px;color:var(--text2)"><span
+              style="width:10px;height:10px;border-radius:2px;background:#00d4aa;display:inline-block"></span>90%+ · 43
+            wells</span>
+          <span style="display:flex;align-items:center;gap:4px;font-size:11px;color:var(--text2)"><span
+              style="width:10px;height:10px;border-radius:2px;background:#2563eb;display:inline-block"></span>75–90% ·
+            38 wells</span>
+          <span style="display:flex;align-items:center;gap:4px;font-size:11px;color:var(--text2)"><span
+              style="width:10px;height:10px;border-radius:2px;background:#f59e0b;display:inline-block"></span>50–75% ·
+            28 wells</span>
+          <span style="display:flex;align-items:center;gap:4px;font-size:11px;color:var(--text2)"><span
+              style="width:10px;height:10px;border-radius:2px;background:#ef4444;display:inline-block"></span>Below 50%
+            · 19 wells</span>
+        </div>
+      </div>
+      <div class="rep-panel">
+        <div class="p-hdr">Energy vs production — efficiency <span class="text-dim">bbl per MWh</span></div>
+        <div style="position:relative;height:150px"><canvas id="rep3" role="img"
+            aria-label="Energy efficiency trend bbl per MWh">Energy efficiency improving from 2.2 to 2.5 bbl per MWh
+            over 7 days.</canvas></div>
+      </div>
+      <div class="rep-panel">
+        <div class="p-hdr">AI maintenance savings — estimated <span class="text-dim">CAD $</span></div>
+        <div style="position:relative;height:150px"><canvas id="rep4" role="img"
+            aria-label="AI maintenance cost savings per month">Monthly savings growing from 8400 to 14200 CAD over 6
+            months.</canvas></div>
+        <div
+          style="margin-top:8px;background:rgba(0,212,170,0.06);border:1px solid rgba(0,212,170,0.15);border-radius:6px;padding:8px 10px">
+          <div style="font-size:10px;color:var(--teal);font-weight:600;margin-bottom:3px">AI-driven maintenance ROI (6
+            months)</div>
+          <div style="font-size:11px;color:var(--text2)">Predicted failures caught early: <span
+              class="text-teal fw6">12</span> · Avoided downtime: <span class="text-teal fw6">847 hrs</span> · Estimated
+            savings: <span class="text-teal fw6">$68,400 CAD</span></div>
+        </div>
+      </div>
+    </div>
+    <div
+      style="background:var(--bg2);border-top:1px solid var(--border);padding:12px 16px;display:flex;gap:8px;align-items:center">
+      <div style="font-size:11px;color:var(--text3)">Generate reports:</div>
+      <div class="ai-btn"
+        onclick="sendPrompt('Generate a full monthly production report for April 2026 including all 128 wells, site summaries, AI insights, and maintenance cost analysis')">
+        Monthly Report ↗</div>
+      <div class="ai-btn"
+        onclick="sendPrompt('Create an executive summary PDF of fleet performance for the last 30 days highlighting AI-driven improvements')">
+        Executive Summary ↗</div>
+      <div class="ai-btn"
+        onclick="sendPrompt('Compare energy efficiency across all 4 sites and identify the top opportunities to reduce operating costs')">
+        Energy Audit ↗</div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal-overlay" id="configModal">
+    <div class="modal-box">
+      <div class="m-hdr">
+        <div class="m-title">Exhibition Simulation Config</div>
+        <button class="m-close" onclick="toggleModal()">&times;</button>
+      </div>
+      <div class="m-body">
+        <div class="m-row">
+          <div class="m-lbl">Master Simulation <span class="m-desc">Enable/disable all live updates</span></div>
+          <label class="switch"><input type="checkbox" id="cfg-master" checked onchange="updateSimState()"><span
+              class="slider"></span></label>
+        </div>
+        <div class="m-row">
+          <div class="m-lbl">Simulation Speed <span class="m-desc">Controls global tick rate</span></div>
+          <input type="range" id="cfg-speed" class="range-slider" min="100" max="3000" step="100" value="1000"
+            style="direction: rtl;" onchange="updateSimState()">
+        </div>
+        <div class="m-row">
+          <div class="m-lbl">Simulate KPIs <span class="m-desc">Fluctuate high-level metrics</span></div>
+          <label class="switch"><input type="checkbox" id="cfg-kpi" checked onchange="updateSimState()"><span
+              class="slider"></span></label>
+        </div>
+        <div class="m-row">
+          <div class="m-lbl">Simulate Telemetry <span class="m-desc">Live sparklines & sensor vals</span></div>
+          <label class="switch"><input type="checkbox" id="cfg-telemetry" checked onchange="updateSimState()"><span
+              class="slider"></span></label>
+        </div>
+        <div class="m-row">
+          <div class="m-lbl">Simulate Charts <span class="m-desc">Real-time dynagraph & trends</span></div>
+          <label class="switch"><input type="checkbox" id="cfg-charts" checked onchange="updateSimState()"><span
+              class="slider"></span></label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+  <script>
+    /* ============ HIKAR SIEN EXHIBITION SIMULATION ENGINE ============ */
+    const assets = [];
+    const siteCounts = { 'Calgary': 15, 'Pembina': 12, 'Red Deer': 8, 'Remote S': 5 };
+    const prefixes = { 'Calgary': 'CF', 'Pembina': 'PJ', 'Red Deer': 'RD', 'Remote S': 'RS' };
+    Object.entries(siteCounts).forEach(([site, count]) => {
+      for(let i=1; i<=count; i++) {
+        let s = 'r'; let eff = 85 + Math.floor(Math.random()*15);
+        if(Math.random() < 0.15) { s = 'w'; eff = 60 + Math.floor(Math.random()*25); }
+        else if(Math.random() < 0.05) { s = 'c'; eff = 20 + Math.floor(Math.random()*30); }
+        else if(Math.random() < 0.02) { s = 'x'; eff = 0; }
+        
+        // Hardcode a few specifically recognizable ones for the demo
+        if(site === 'Calgary' && i === 1) { s = 'r'; eff = 92; }
+        if(site === 'Calgary' && i === 3) { s = 'c'; eff = 45; }
+        if(site === 'Pembina' && i === 7) { s = 'w'; eff = 74; }
+        
+        assets.push({
+          id: `${prefixes[site]}-${i.toString().padStart(3, '0')}`,
+          site: site,
+          s: s,
+          eff: eff
+        });
+      }
+    });
+    const dotC = { r: 'dot-g', w: 'dot-a', c: 'dot-r', x: 'dot-x' };
+    const stL = { r: 'Running', w: 'Warning', c: 'Critical', x: 'Idle' };
+    const stC = { r: 'st-r', w: 'st-w', c: 'st-c', x: 'st-x' };
+    let currentFilter = 'Calgary Field';
+    function renderAssetList() {
+      const al = document.getElementById('asset-list');
+      al.innerHTML = '';
+      const filtered = currentFilter ? assets.filter(a => a.site === currentFilter || a.site === currentFilter.replace(' Field', '').replace(' Site', '')) : assets;
+      
+      if (currentFilter) {
+         const clearBtn = document.createElement('div');
+         clearBtn.innerHTML = `Showing: <b style="color:var(--text)">${currentFilter}</b> <span style="float:right;color:var(--red);cursor:pointer;font-weight:600;" onclick="currentFilter=null;renderAssetList()">Clear ✕</span>`;
+         clearBtn.style.cssText = "font-size:11px; padding-bottom:8px; margin-bottom:8px; border-bottom:1px solid var(--border);";
+         al.appendChild(clearBtn);
+      }
+
+      filtered.forEach((a, i) => {
+        const d = document.createElement('div');
+        d.className = 'a-row' + (i === 0 && !currentFilter ? ' sel' : '');
+        d.innerHTML = `<div class="a-dot ${dotC[a.s]}"></div><div class="a-name">${a.id}</div><div class="a-site">${a.site}</div><div class="a-eff" id="eff-${a.id}">${a.eff}%</div><div class="a-st ${stC[a.s]}">${stL[a.s]}</div>`;
+        d.onclick = () => { 
+          document.querySelectorAll('.a-row').forEach(r => r.classList.remove('sel')); 
+          d.classList.add('sel');
+          navigateToWellDetail(a.id);
+        };
+        al.appendChild(d);
+      });
+    }
+
+    function filterAssetList(site) {
+      currentFilter = site;
+      renderAssetList();
+    }
+
+    function navigateToWellDetail(id) {
+      const wdTitle = document.getElementById('wd-title');
+      if(wdTitle) wdTitle.textContent = id;
+      
+      const teleTitle = document.getElementById('tele-asset-title');
+      if(teleTitle) teleTitle.textContent = id + ' (selected)';
+      
+      showPage('welldetail', document.querySelectorAll('.nav-tab')[1]);
+    }
+    
+    renderAssetList();
+
+    function makeSpark(id, vals, color) {
+      const w = document.getElementById(id); if (!w) return;
+      const mx = Math.max(...vals);
+      vals.forEach(v => {
+        const b = document.createElement('div');
+        b.className = 'sb';
+        b.style.cssText = `height:${Math.round((v / mx) * 20) + 2}px;background:${color || '#1e3a5f'}`;
+        w.appendChild(b);
+      });
+    }
+    makeSpark('s-spm', [5.8, 6.1, 5.9, 6.4, 6.2, 6.0, 6.4], '#00AEEF');
+    makeSpark('s-fl', [1900, 1870, 1860, 1855, 1850, 1848, 1847], '#00AEEF');
+    makeSpark('s-ml', [68, 70, 72, 74, 71, 73, 72], '#f59e0b');
+    makeSpark('s-cp', [44, 46, 47, 48, 47, 48, 48], '#5a7399');
+    makeSpark('s-rl', [17200, 17800, 18000, 18200, 18100, 18200, 18240], '#00AEEF');
+    makeSpark('s-tp', [118, 120, 121, 123, 122, 124, 124], '#f59e0b');
+
+    function showPage(pg, btn) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+      document.getElementById('pg-' + pg).classList.add('active');
+      btn.classList.add('active');
+      if (pg === 'reports') initReports();
+      if (pg === 'welldetail') initWellCharts();
+      if (pg === 'aiengine') initAICharts();
+    }
+
+    function updateClock() {
+      const n = new Date();
+      document.getElementById('nclock').textContent = n.toLocaleDateString('en-CA', { month: '2-digit', day: '2-digit', year: 'numeric' }) + ' · ' + n.toLocaleTimeString('en-CA', { hour: '2-digit', minute: '2-digit', hour12: false }) + ' MST';
+    }
+    setInterval(updateClock, 1000); updateClock();
+
+    const aiScan = document.getElementById('ai-scan');
+    let scanR = 20, scanDir = 1;
+    setInterval(() => {
+      scanR += scanDir * 0.4;
+      if (scanR > 50) { scanDir = -1 } else if (scanR < 18) { scanDir = 1 }
+      aiScan.setAttribute('r', scanR.toFixed(1));
+      aiScan.setAttribute('opacity', (0.6 * (1 - (scanR - 18) / 35)).toFixed(2));
+    }, 50);
+
+    let gCharts = {};
+
+    gCharts.prod = new Chart(document.getElementById('prodChart'), {
+      data: {
+        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+        datasets: [
+          { type: 'line', data: [11200, 11600, 12000, 11800, 12200, 12100, 12450], borderColor: '#00AEEF', borderWidth: 1.5, pointRadius: 2, pointBackgroundColor: '#00AEEF', fill: false, yAxisID: 'y' },
+          { type: 'bar', data: [4800, 4900, 5100, 4950, 5050, 4980, 5120], backgroundColor: '#e2e8f0', yAxisID: 'y2', borderRadius: 2 }
+        ]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } },
+        scales: {
+          x: { ticks: { color: '#94a3b8', font: { size: 9 } }, grid: { color: '#e2e8f0' } },
+          y: { ticks: { color: '#00AEEF', font: { size: 9 }, callback: v => v.toLocaleString() }, grid: { color: '#e2e8f0' }, position: 'left' },
+          y2: { ticks: { color: '#0077b3', font: { size: 9 } }, grid: { display: false }, position: 'right' }
+        }
+      }
+    });
+
+    function initWellCharts() {
+      if (Chart.getChart('dynaChart')) return;
+      const pts = [];
+      for (let i = 0; i <= 60; i++) {
+        const t2 = (i / 60) * 2 * Math.PI;
+        pts.push({ x: Math.round(13000 + 4000 * Math.cos(t2)), y: Math.round(10000 + 8000 * Math.sin(t2) * (1 + 0.3 * Math.cos(t2))) });
+      }
+      gCharts.dyna = new Chart(document.getElementById('dynaChart'), {
+        type: 'scatter', data: { datasets: [{ data: pts, borderColor: '#00AEEF', backgroundColor: 'transparent', borderWidth: 1.5, pointRadius: 0, showLine: true, tension: 0.4 }] },
+        options: {
+          responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } },
+          scales: {
+            x: { title: { display: true, text: 'Position (in)', color: '#94a3b8', font: { size: 9 } }, ticks: { color: '#94a3b8', font: { size: 9 } }, grid: { color: '#e2e8f0' } },
+            y: { title: { display: true, text: 'Load (lbs)', color: '#94a3b8', font: { size: 9 } }, ticks: { color: '#94a3b8', font: { size: 9 } }, grid: { color: '#e2e8f0' } }
+          }
+        }
+      });
+      const hrs = Array.from({ length: 24 }, (_, i) => i + 'h');
+      const prod24 = hrs.map((_, i) => Math.round(12 + Math.sin(i * 0.4) * 1.5 + Math.random() * 0.8));
+      gCharts.trend = new Chart(document.getElementById('wellTrendChart'), {
+        type: 'line', data: { labels: hrs, datasets: [{ data: prod24, borderColor: '#00AEEF', borderWidth: 1.5, backgroundColor: 'rgba(0,174,239,0.06)', fill: true, pointRadius: 0, tension: 0.4 }] },
+        options: {
+          responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } },
+          scales: {
+            x: { ticks: { color: '#94a3b8', font: { size: 9 }, maxTicksLimit: 8 }, grid: { color: '#e2e8f0' } },
+            y: { ticks: { color: '#00AEEF', font: { size: 9 } }, grid: { color: '#e2e8f0' } }
+          }
+        }
+      });
+    }
+
+    function initAICharts() {
+      if (Chart.getChart('anomChart')) return;
+      const labels = Array.from({ length: 72 }, (_, i) => i + 'h');
+      const baseline = labels.map(() => 1);
+      const sig = labels.map((_, i) => {
+        const base = 0.3 + Math.sin(i * 0.2) * 0.2 + Math.random() * 0.15;
+        return i > 42 ? base + (i - 42) * 0.05 : base;
+      });
+      gCharts.anom = new Chart(document.getElementById('anomChart'), {
+        type: 'line',
+        data: {
+          labels, datasets: [
+            { label: 'Rod load σ', data: sig, borderColor: '#ef4444', borderWidth: 1.5, pointRadius: 0, fill: false, tension: 0.3 },
+            { label: '2σ threshold', data: labels.map(() => 2), borderColor: '#f59e0b', borderWidth: 1, borderDash: [4, 3], pointRadius: 0, fill: false },
+            { label: 'Normal', data: baseline, borderColor: '#cbd5e1', borderWidth: 1, pointRadius: 0, fill: false }
+          ]
+        },
+        options: {
+          responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } },
+          scales: {
+            x: { ticks: { color: '#94a3b8', font: { size: 9 }, maxTicksLimit: 12 }, grid: { color: '#e2e8f0' } },
+            y: { ticks: { color: '#ef4444', font: { size: 9 } }, grid: { color: '#e2e8f0' } }
+          }
+        }
+      });
+    }
+
+    function selectAnom(el, id, type, desc, conf, sev, time) {
+      document.querySelectorAll('.anom-item').forEach(a => a.classList.remove('active'));
+      el.classList.add('active');
+      document.getElementById('anom-title').textContent = id + ' · ' + type;
+      document.getElementById('anom-desc').textContent = desc;
+      document.getElementById('anom-conf').textContent = conf + '%';
+      document.getElementById('anom-sev').textContent = sev;
+      document.getElementById('anom-time').textContent = time;
+    }
+
+    function initReports() {
+      if (Chart.getChart('rep1')) return;
+      const days = Array.from({ length: 30 }, (_, i) => 'D' + (i + 1));
+      const prod = days.map((_, i) => Math.round(11200 + i * 42 + Math.sin(i * 0.6) * 200 + Math.random() * 150));
+      gCharts.rep1 = new Chart(document.getElementById('rep1'), {
+        type: 'line',
+        data: { labels: days, datasets: [{ data: prod, borderColor: '#00AEEF', backgroundColor: 'rgba(0,174,239,0.05)', fill: true, borderWidth: 1.5, pointRadius: 0, tension: 0.4 }] },
+        options: {
+          responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } },
+          scales: {
+            x: { ticks: { color: '#94a3b8', font: { size: 9 }, maxTicksLimit: 10 }, grid: { color: '#e2e8f0' } },
+            y: { ticks: { color: '#00AEEF', font: { size: 9 }, callback: v => v.toLocaleString() }, grid: { color: '#e2e8f0' } }
+          }
+        }
+      });
+      gCharts.rep2 = new Chart(document.getElementById('rep2'), {
+        type: 'doughnut',
+        data: {
+          labels: ['90%+', '75–90%', '50–75%', '<50%'],
+          datasets: [{ data: [43, 38, 28, 19], backgroundColor: ['#00AEEF', '#0077b3', '#f59e0b', '#ef4444'], borderWidth: 0, hoverOffset: 4 }]
+        },
+        options: { responsive: true, maintainAspectRatio: false, cutout: '68%', plugins: { legend: { display: false } } }
+      });
+      gCharts.rep3 = new Chart(document.getElementById('rep3'), {
+        type: 'line',
+        data: {
+          labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+          datasets: [{ data: [2.2, 2.28, 2.31, 2.27, 2.39, 2.42, 2.48], borderColor: '#00AEEF', borderWidth: 1.5, backgroundColor: 'rgba(0,174,239,0.05)', fill: true, pointRadius: 3, pointBackgroundColor: '#00AEEF', tension: 0.4 }]
+        },
+        options: {
+          responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } },
+          scales: {
+            x: { ticks: { color: '#94a3b8', font: { size: 9 } }, grid: { color: '#e2e8f0' } },
+            y: { ticks: { color: '#00AEEF', font: { size: 9 } }, grid: { color: '#e2e8f0' } }
+          }
+        }
+      });
+      gCharts.rep4 = new Chart(document.getElementById('rep4'), {
+        type: 'bar',
+        data: {
+          labels: ['Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr'],
+          datasets: [{ data: [8400, 9100, 10200, 11800, 13100, 14200], backgroundColor: '#7c3aed', borderRadius: 3 }]
+        },
+        options: {
+          responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } },
+          scales: {
+            x: { ticks: { color: '#94a3b8', font: { size: 9 } }, grid: { color: '#e2e8f0' } },
+            y: { ticks: { color: '#7c3aed', font: { size: 9 }, callback: v => '$' + v.toLocaleString() }, grid: { color: '#e2e8f0' } }
+          }
+        }
+      });
+    }
+
+    let prodVal = 12450;
+    let runVal = 104;
+
+    // Simulation Logic
+    let simIntervalId = null;
+    let simSettings = { master: true, speed: 1000, kpi: true, telemetry: true, charts: true };
+    let tickCounter = 0;
+    let dynaTime = 0;
+
+    function toggleModal() {
+      const m = document.getElementById('configModal');
+      m.classList.toggle('active');
+    }
+
+    function updateSimState() {
+      simSettings.master = document.getElementById('cfg-master').checked;
+      simSettings.speed = document.getElementById('cfg-speed').value;
+      simSettings.kpi = document.getElementById('cfg-kpi').checked;
+      simSettings.telemetry = document.getElementById('cfg-telemetry').checked;
+      simSettings.charts = document.getElementById('cfg-charts').checked;
+
+      if (simIntervalId) clearInterval(simIntervalId);
+      if (simSettings.master) {
+        simIntervalId = setInterval(simulationTick, simSettings.speed);
+      }
+    }
+
+    const sData = {
+      'spm': { v: 6.4, hist: [5.8, 6.1, 5.9, 6.4, 6.2, 6.0, 6.4], unit: 'spm' },
+      'fl': { v: 1847, hist: [1900, 1870, 1860, 1855, 1850, 1848, 1847], unit: 'ft' },
+      'ml': { v: 72, hist: [68, 70, 72, 74, 71, 73, 72], unit: '%' },
+      'cp': { v: 48, hist: [44, 46, 47, 48, 47, 48, 48], unit: 'psi' },
+      'rl': { v: 18240, hist: [17200, 17800, 18000, 18200, 18100, 18200, 18240], unit: 'lbs' },
+      'tp': { v: 124, hist: [118, 120, 121, 123, 122, 124, 124], unit: '°C' }
+    };
+
+    function simulationTick() {
+      tickCounter++;
+
+      // KPI Updates
+      if (simSettings.kpi) {
+        if (tickCounter % 3 === 0) {
+          prodVal += Math.round((Math.random() - 0.46) * 12);
+          if (prodVal < 11800) prodVal = 11800;
+          if (prodVal > 13200) prodVal = 13200;
+          document.getElementById('kpi-prod').textContent = prodVal.toLocaleString();
+          runVal = 102 + Math.round(Math.random() * 6);
+          document.getElementById('kpi-run').textContent = runVal;
+        }
+      }
+
+      // Telemetry Updates
+      if (simSettings.telemetry) {
+        const tNoise = {
+          'spm': (Math.random() - 0.5) * 0.4,
+          'fl': (Math.random() - 0.5) * 12,
+          'ml': Math.round((Math.random() - 0.5) * 4),
+          'cp': Math.round((Math.random() - 0.5) * 3),
+          'rl': Math.round((Math.random() - 0.5) * 200),
+          'tp': Math.round((Math.random() - 0.5) * 2)
+        };
+        const colors = { 'spm': '#00AEEF', 'fl': '#00AEEF', 'ml': '#f59e0b', 'cp': '#5a7399', 'rl': '#00AEEF', 'tp': '#f59e0b' };
+
+        for (let key in sData) {
+          let d = sData[key];
+          d.v += tNoise[key];
+          d.hist.push(d.v);
+          if (d.hist.length > 12) d.hist.shift();
+
+          const w = document.getElementById('s-' + key);
+          if (w) { w.innerHTML = ''; makeSpark('s-' + key, d.hist, colors[key]); }
+
+          const el = document.getElementById('val-' + key);
+          if (el) {
+            let displayVal = key === 'spm' ? d.v.toFixed(1) : Math.round(d.v).toLocaleString();
+            el.innerHTML = displayVal + '<span class="tele-unit">' + d.unit + '</span>';
+          }
+        }
+      }
+
+      // Chart Updates
+      if (simSettings.charts) {
+        // Dynagraph breathing animation
+        if (gCharts.dyna && document.getElementById('pg-welldetail').classList.contains('active')) {
+          dynaTime += 0.08;
+          const pts = gCharts.dyna.data.datasets[0].data;
+          for (let i = 0; i <= 60; i++) {
+            const t2 = (i / 60) * 2 * Math.PI;
+            const breathe = Math.sin(dynaTime) * 0.04;
+            pts[i] = {
+              x: Math.round(13000 + 4000 * Math.cos(t2) * (1 + breathe) + (Math.random() - 0.5) * 80),
+              y: Math.round(10000 + 8000 * Math.sin(t2) * (1 + 0.3 * Math.cos(t2)) * (1 + breathe * 0.5) + (Math.random() - 0.5) * 120)
+            };
+          }
+          gCharts.dyna.update('none');
+        }
+
+        // Well trend scrolling
+        if (gCharts.trend && tickCounter % 3 === 0 && document.getElementById('pg-welldetail').classList.contains('active')) {
+          let ds = gCharts.trend.data.datasets[0].data;
+          ds.shift();
+          ds.push(Math.round(12 + Math.sin(tickCounter * 0.08) * 1.5 + Math.random() * 0.8));
+          let lbls = gCharts.trend.data.labels;
+          let last = parseInt(lbls[lbls.length - 1]);
+          lbls.shift(); lbls.push((last + 1) + 'h');
+          gCharts.trend.update('none');
+        }
+
+        // Production chart micro-update
+        if (gCharts.prod && tickCounter % 5 === 0) {
+          let ds0 = gCharts.prod.data.datasets[0].data;
+          ds0[ds0.length - 1] = prodVal;
+          let ds1 = gCharts.prod.data.datasets[1].data;
+          ds1[ds1.length - 1] = 5000 + Math.round(Math.random() * 200);
+          gCharts.prod.update('none');
+        }
+
+        // Anomaly signal growth
+        if (gCharts.anom && tickCounter % 6 === 0 && document.getElementById('pg-aiengine').classList.contains('active')) {
+          let sig = gCharts.anom.data.datasets[0].data;
+          sig.shift();
+          let i = sig.length;
+          let base = 0.3 + Math.sin(i * 0.15) * 0.2 + Math.random() * 0.15;
+          sig.push(i > 40 ? base + (i - 40) * 0.04 : base);
+          let lbls = gCharts.anom.data.labels;
+          let last = parseInt(lbls[lbls.length - 1]);
+          lbls.shift(); lbls.push((last + 1) + 'h');
+          gCharts.anom.data.datasets[1].data.shift();
+          gCharts.anom.data.datasets[1].data.push(2);
+          gCharts.anom.data.datasets[2].data.shift();
+          gCharts.anom.data.datasets[2].data.push(1);
+          gCharts.anom.update('none');
+        }
+      }
+
+      // Asset list efficiency cycling
+      if (tickCounter % 8 === 0) {
+        const rows = document.querySelectorAll('.a-row');
+        const idx = Math.floor(Math.random() * assets.length);
+        const a = assets[idx];
+        a.eff = Math.max(10, Math.min(99, a.eff + Math.round((Math.random() - 0.45) * 5)));
+        if (rows[idx]) {
+          const effEl = rows[idx].querySelector('.a-eff');
+          if (effEl) effEl.textContent = a.eff + '%';
+        }
+      }
+
+      // Map well dot subtle pulse
+      if (tickCounter % 4 === 0) {
+        const dots = document.querySelectorAll('.well-dot');
+        dots.forEach(d => {
+          d.setAttribute('opacity', (0.7 + Math.random() * 0.3).toFixed(2));
+        });
+      }
+    }
+
+    // Start simulation
+    updateSimState();
+  </script>
+</body>
+
+</html>
