@@ -8,6 +8,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
     rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <style>
     * {
       box-sizing: border-box;
@@ -326,7 +328,7 @@
 
     .ov-grid {
       display: grid;
-      grid-template-columns: 280px 1fr 280px;
+      grid-template-columns: 340px 1fr 340px;
       min-height: 420px;
       gap: 24px;
       padding: 24px;
@@ -680,7 +682,7 @@
     /* Bottom row */
     .bot-row {
       display: grid;
-      grid-template-columns: 260px 1fr 280px;
+      grid-template-columns: 340px 1fr 340px;
       gap: 24px;
       padding: 0 24px 24px 24px;
       background: var(--bg);
@@ -1248,98 +1250,28 @@
       </div>
 
       <!-- Map -->
-      <div class="panel map-wrap" style="padding:0;min-height:360px;">
-        <svg class="map-svg" viewBox="0 0 500 360" id="mapsvg">
-          <defs>
-            <radialGradient id="glowG" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stop-color="#00AEEF" stop-opacity="0.05" />
-              <stop offset="100%" stop-color="#00AEEF" stop-opacity="0" />
-            </radialGradient>
-            <radialGradient id="glowA" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.05" />
-              <stop offset="100%" stop-color="#f59e0b" stop-opacity="0" />
-            </radialGradient>
-            <radialGradient id="glowR" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stop-color="#ef4444" stop-opacity="0.05" />
-              <stop offset="100%" stop-color="#ef4444" stop-opacity="0" />
-            </radialGradient>
-          </defs>
-          <!-- Grid -->
-          <rect width="500" height="360" fill="transparent" />
-          <line x1="0" y1="60" x2="500" y2="60" class="grid-line" />
-          <line x1="0" y1="120" x2="500" y2="120" class="grid-line" />
-          <line x1="0" y1="180" x2="500" y2="180" class="grid-line" />
-          <line x1="0" y1="240" x2="500" y2="240" class="grid-line" />
-          <line x1="0" y1="300" x2="500" y2="300" class="grid-line" />
-          <line x1="100" y1="0" x2="100" y2="360" class="grid-line" />
-          <line x1="200" y1="0" x2="200" y2="360" class="grid-line" />
-          <line x1="300" y1="0" x2="300" y2="360" class="grid-line" />
-          <line x1="400" y1="0" x2="400" y2="360" class="grid-line" />
-          <!-- Pipelines -->
-          <path d="M 115 175 Q 200 150 280 160" class="pipe" />
-          <path d="M 280 160 Q 350 130 420 100" class="pipe" />
-          <path d="M 280 160 L 390 230" class="pipe" />
-          <path d="M 115 175 L 85 260" class="pipe" />
-          <!-- Site glows -->
-          <circle cx="115" cy="175" r="55" fill="url(#glowG)" />
-          <circle cx="280" cy="160" r="45" fill="url(#glowG)" />
-          <circle cx="420" cy="100" r="38" fill="url(#glowA)" />
-          <circle cx="390" cy="230" r="35" fill="url(#glowR)" />
-          <!-- Calgary cluster -->
-          <g style="cursor:pointer; transition: opacity 0.2s;" onclick="filterAssetList('Calgary Field')" onmouseover="this.style.opacity=0.7" onmouseout="this.style.opacity=1">
-            <circle cx="115" cy="175" r="24" fill="rgba(0,174,239,0.04)" stroke="#00AEEF" stroke-width="0.8" />
-            <text x="115" y="142" class="site-label-md" text-anchor="middle">Calgary Field</text>
-            <text x="115" y="150" class="site-label-sm" text-anchor="middle">15 wells</text>
-            <circle cx="88" cy="178" r="5.5" fill="#00AEEF" class="well-dot" opacity="0.9" />
-            <circle cx="100" cy="168" r="5.5" fill="#00AEEF" class="well-dot" opacity="0.9" />
-            <circle cx="114" cy="183" r="5.5" fill="#f59e0b" class="well-dot" opacity="0.9" />
-            <circle cx="128" cy="174" r="5.5" fill="#00AEEF" class="well-dot" opacity="0.9" />
-            <circle cx="95" cy="188" r="4.5" fill="#ef4444" class="well-dot" opacity="0.9" />
-            <circle cx="125" cy="186" r="4.5" fill="#00AEEF" class="well-dot" opacity="0.9" />
-            <circle cx="107" cy="172" r="4" fill="#00AEEF" class="well-dot" opacity="0.9" />
-          </g>
-          <!-- Pembina -->
-          <g style="cursor:pointer; transition: opacity 0.2s;" onclick="filterAssetList('Pembina')" onmouseover="this.style.opacity=0.7" onmouseout="this.style.opacity=1">
-            <circle cx="280" cy="160" r="20" fill="rgba(0,174,239,0.04)" stroke="#00AEEF" stroke-width="0.8" />
-            <text x="280" y="130" class="site-label-md" text-anchor="middle">Pembina</text>
-            <text x="280" y="138" class="site-label-sm" text-anchor="middle">12 wells</text>
-            <circle cx="262" cy="163" r="5" fill="#00AEEF" opacity="0.9" />
-            <circle cx="275" cy="170" r="5" fill="#00AEEF" opacity="0.9" />
-            <circle cx="290" cy="162" r="4.5" fill="#f59e0b" opacity="0.9" />
-            <circle cx="298" cy="170" r="4.5" fill="#00AEEF" opacity="0.9" />
-          </g>
-          <!-- Red Deer -->
-          <g style="cursor:pointer; transition: opacity 0.2s;" onclick="filterAssetList('Red Deer')" onmouseover="this.style.opacity=0.7" onmouseout="this.style.opacity=1">
-            <circle cx="420" cy="100" r="17" fill="rgba(245,158,11,0.04)" stroke="#f59e0b" stroke-width="0.8" />
-            <text x="420" y="72" class="site-label-md" text-anchor="middle">Red Deer</text>
-            <text x="420" y="80" class="site-label-sm" text-anchor="middle">8 wells</text>
-            <circle cx="407" cy="103" r="4.5" fill="#f59e0b" opacity="0.9" />
-            <circle cx="420" cy="108" r="4.5" fill="#00AEEF" opacity="0.9" />
-            <circle cx="433" cy="100" r="4.5" fill="#ef4444" opacity="0.9" />
-          </g>
-          <!-- Remote S -->
-          <g style="cursor:pointer; transition: opacity 0.2s;" onclick="filterAssetList('Remote S')" onmouseover="this.style.opacity=0.7" onmouseout="this.style.opacity=1">
-            <circle cx="390" cy="230" r="16" fill="rgba(239,68,68,0.04)" stroke="#ef4444" stroke-width="0.8" />
-            <text x="390" y="202" class="site-label-md" text-anchor="middle">Remote South</text>
-            <text x="390" y="210" class="site-label-sm" text-anchor="middle">5 wells</text>
-            <circle cx="378" cy="233" r="4.5" fill="#ef4444" opacity="0.9" />
-            <circle cx="392" cy="240" r="4.5" fill="#f59e0b" opacity="0.9" />
-            <circle cx="403" cy="228" r="4.5" fill="#ef4444" opacity="0.9" />
-          </g>
-          <!-- Lethbridge -->
-          <circle cx="85" cy="265" r="13" fill="rgba(0,174,239,0.03)" stroke="#00AEEF" stroke-width="0.5" />
-          <text x="85" y="248" class="site-label-sm" text-anchor="middle">Lethbridge</text>
-          <circle cx="78" cy="268" r="3.5" fill="#00AEEF" opacity="0.7" />
-          <circle cx="90" cy="264" r="3.5" fill="#00AEEF" opacity="0.7" />
-          <!-- AI scan pulse -->
-          <circle id="ai-scan" cx="280" cy="160" r="20" fill="none" stroke="#7c3aed" stroke-width="0.8" opacity="0.6" />
-          <!-- Map label -->
-          <text x="12" y="20" class="site-label-sm" fill="#94a3b8">FIELD MAP · ALBERTA OPERATIONS</text>
-          <!-- Legend -->
-          <circle cx="340" cy="342" r="4" fill="#00AEEF" /><text x="349" y="346" class="site-label-sm">Normal</text>
-          <circle cx="385" cy="342" r="4" fill="#f59e0b" /><text x="394" y="346" class="site-label-sm">Warning</text>
-          <circle cx="432" cy="342" r="4" fill="#ef4444" /><text x="441" y="346" class="site-label-sm">Critical</text>
-        </svg>
+      <div class="panel map-wrap" style="padding:0;min-height:360px;position:relative;">
+        <div id="map" style="width: 100%; height: 100%; z-index: 1; border-radius: 16px;"></div>
+        
+        <!-- Map Overlay Info -->
+        <div style="position: absolute; top: 12px; left: 16px; z-index: 10; pointer-events: none;">
+          <div style="font-size: 10px; font-weight: 600; color: #475569; background: rgba(255,255,255,0.85); padding: 4px 8px; border-radius: 4px; backdrop-filter: blur(4px);">
+            ALBERTA, CANADA MAP
+          </div>
+        </div>
+        
+        <!-- Legend Overlay -->
+        <div style="position: absolute; bottom: 12px; right: 16px; z-index: 10; display: flex; gap: 12px; background: rgba(255,255,255,0.85); padding: 6px 12px; border-radius: 20px; backdrop-filter: blur(4px); box-shadow: 0 2px 8px rgba(0,0,0,0.05); pointer-events: none;">
+          <div style="display:flex;align-items:center;gap:4px;font-size:10px;color:var(--text2)">
+            <div style="width:8px;height:8px;border-radius:50%;background:#00AEEF"></div> Normal
+          </div>
+          <div style="display:flex;align-items:center;gap:4px;font-size:10px;color:var(--text2)">
+            <div style="width:8px;height:8px;border-radius:50%;background:#f59e0b"></div> Warning
+          </div>
+          <div style="display:flex;align-items:center;gap:4px;font-size:10px;color:var(--text2)">
+            <div style="width:8px;height:8px;border-radius:50%;background:#ef4444"></div> Critical
+          </div>
+        </div>
       </div>
 
       <!-- AI Sidebar -->
@@ -1378,7 +1310,7 @@
         </div>
         <div class="ai-card purple">
           <div class="ai-card-type">Fleet Insight</div>
-          <div class="ai-card-text">12% avg performance drop in last 24h — Remote South cluster</div>
+          <div class="ai-card-text">12% avg performance drop in last 24h — Site 4 cluster</div>
           <div class="ai-card-meta">Root cause: communication lag</div>
         </div>
         <div class="ai-btn-row">
@@ -1436,13 +1368,13 @@
     <div class="bot-row">
       <div class="panel">
         <div class="p-hdr">Site summary</div>
-        <div class="site-sum-row"><span style="font-size:11px;color:var(--text)">Calgary Field</span><span
+        <div class="site-sum-row"><span style="font-size:11px;color:var(--text)">Site 1</span><span
             style="font-size:10px;color:var(--teal)">14/15 running</span></div>
-        <div class="site-sum-row"><span style="font-size:11px;color:var(--text)">Pembina Site</span><span
+        <div class="site-sum-row"><span style="font-size:11px;color:var(--text)">Site 2</span><span
             style="font-size:10px;color:#60a5fa">11/12 running</span></div>
-        <div class="site-sum-row warn"><span style="font-size:11px;color:var(--text)">Red Deer</span><span
+        <div class="site-sum-row warn"><span style="font-size:11px;color:var(--text)">Site 3</span><span
             style="font-size:10px;color:var(--amber)">6/8 · 2 warn</span></div>
-        <div class="site-sum-row crit"><span style="font-size:11px;color:var(--text)">Remote South</span><span
+        <div class="site-sum-row crit"><span style="font-size:11px;color:var(--text)">Site 4</span><span
             style="font-size:10px;color:var(--red)">3/5 · 2 crit</span></div>
       </div>
       <div class="panel">
@@ -1476,11 +1408,11 @@
       <select id="well-select"
         style="background:var(--bg3);border:1px solid var(--border2);color:var(--text);border-radius:5px;padding:4px 10px;font-size:12px"
         onchange="updateWellDetail()">
-        <option>PJ-101 — Calgary Field</option>
-        <option>PJ-102 — Calgary Field</option>
-        <option>PJ-103 — Calgary Field (Critical)</option>
-        <option>PJ-110 — Pembina (Optimal)</option>
-        <option>RS-07 — Remote South (Critical)</option>
+        <option>PJ-101 — Site 1</option>
+        <option>PJ-102 — Site 1</option>
+        <option>PJ-103 — Site 1 (Critical)</option>
+        <option>PJ-110 — Site 2 (Optimal)</option>
+        <option>RS-07 — Site 4 (Critical)</option>
       </select>
       <div style="margin-left:auto;font-size:11px;color:var(--text3)">Click any well in the asset list to drill down
       </div>
@@ -1499,7 +1431,7 @@
             </div>
             <div>
               <div style="font-size:16px;font-weight:700;color:var(--text)" id="wd-title">PJ-101</div>
-              <div style="font-size:11px;color:var(--text3)" id="wd-site">Calgary Field · Running</div>
+              <div style="font-size:11px;color:var(--text3)" id="wd-site">Site 1 · Running</div>
             </div>
             <div style="margin-left:auto;text-align:right">
               <div style="font-size:22px;font-weight:700" id="wd-eff" class="text-teal">92%</div>
@@ -1697,7 +1629,7 @@
               onclick="sendPrompt('What is the estimated downtime and production loss if PJ-103 bearing fails completely?')">
               Impact Analysis ↗</div>
             <div class="ai-btn"
-              onclick="sendPrompt('Schedule maintenance for PJ-103 and notify the field crew in Red Deer')">Schedule
+              onclick="sendPrompt('Schedule maintenance for PJ-103 and notify the field crew in Site 3')">Schedule
               Work ↗</div>
           </div>
         </div>
@@ -1905,8 +1837,8 @@
   <script>
     /* ============ HIKAR SIEN EXHIBITION SIMULATION ENGINE ============ */
     const assets = [];
-    const siteCounts = { 'Calgary': 15, 'Pembina': 12, 'Red Deer': 8, 'Remote S': 5 };
-    const prefixes = { 'Calgary': 'CF', 'Pembina': 'PJ', 'Red Deer': 'RD', 'Remote S': 'RS' };
+    const siteCounts = { 'Site 1': 15, 'Site 2': 12, 'Site 3': 8, 'Site 4': 5 };
+    const prefixes = { 'Site 1': 'CF', 'Site 2': 'PJ', 'Site 3': 'RD', 'Site 4': 'RS' };
     Object.entries(siteCounts).forEach(([site, count]) => {
       for(let i=1; i<=count; i++) {
         let s = 'r'; let eff = 85 + Math.floor(Math.random()*15);
@@ -1915,9 +1847,9 @@
         else if(Math.random() < 0.02) { s = 'x'; eff = 0; }
         
         // Hardcode a few specifically recognizable ones for the demo
-        if(site === 'Calgary' && i === 1) { s = 'r'; eff = 92; }
-        if(site === 'Calgary' && i === 3) { s = 'c'; eff = 45; }
-        if(site === 'Pembina' && i === 7) { s = 'w'; eff = 74; }
+        if(site === 'Site 1' && i === 1) { s = 'r'; eff = 92; }
+        if(site === 'Site 1' && i === 3) { s = 'c'; eff = 45; }
+        if(site === 'Site 2' && i === 7) { s = 'w'; eff = 74; }
         
         assets.push({
           id: `${prefixes[site]}-${i.toString().padStart(3, '0')}`,
@@ -1930,7 +1862,84 @@
     const dotC = { r: 'dot-g', w: 'dot-a', c: 'dot-r', x: 'dot-x' };
     const stL = { r: 'Running', w: 'Warning', c: 'Critical', x: 'Idle' };
     const stC = { r: 'st-r', w: 'st-w', c: 'st-c', x: 'st-x' };
-    let currentFilter = 'Calgary Field';
+    const map = L.map('map').setView([51.8, -114.5], 6); // Alberta
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/">CARTO</a>',
+      subdomains: 'abcd',
+      maxZoom: 20
+    }).addTo(map);
+
+    const siteLocations = {
+      'Site 1': [51.0447, -114.0719],
+      'Site 2': [53.2201, -114.9818],
+      'Site 3': [52.2681, -113.8112],
+      'Site 4': [50.0416, -110.6775],
+      'Site 5': [49.6942, -112.8329]
+    };
+
+    const siteColors = {
+      'Site 1': '#00AEEF',
+      'Site 2': '#00AEEF',
+      'Site 3': '#f59e0b',
+      'Site 4': '#ef4444',
+      'Site 5': '#00AEEF'
+    };
+
+    // Draw animated pipes connecting sites
+    const pipeOptions = { color: '#cbd5e1', weight: 1.5, className: 'pipe' };
+    L.polyline([siteLocations['Site 1'], siteLocations['Site 2']], pipeOptions).addTo(map);
+    L.polyline([siteLocations['Site 2'], siteLocations['Site 3']], pipeOptions).addTo(map);
+    L.polyline([siteLocations['Site 2'], siteLocations['Site 4']], pipeOptions).addTo(map);
+    L.polyline([siteLocations['Site 1'], siteLocations['Site 5']], pipeOptions).addTo(map);
+
+    function getClusterSVG(siteName) {
+      const c = siteColors[siteName];
+      const rgb = c === '#00AEEF' ? '0,174,239' : (c === '#f59e0b' ? '245,158,11' : '239,68,68');
+      const count = siteName === 'Site 1' ? 15 : (siteName === 'Site 2' ? 12 : (siteName === 'Site 3' ? 8 : (siteName === 'Site 4' ? 5 : 2)));
+      
+      let dots = '';
+      let seed = siteName.charCodeAt(5);
+      function rand() { seed = (seed * 9301 + 49297) % 233280; return seed / 233280; }
+      
+      for(let i=0; i<count; i++) {
+        const angle = rand() * Math.PI * 2;
+        const dist = 6 + rand() * 14;
+        const cx = 50 + Math.cos(angle) * dist;
+        const cy = 50 + Math.sin(angle) * dist;
+        const r = 2.5 + rand() * 2.5;
+        
+        let dColor = '#00AEEF';
+        if(rand() > 0.8) dColor = '#f59e0b';
+        if(rand() > 0.9) dColor = '#ef4444';
+        
+        dots += `<circle cx="${cx}" cy="${cy}" r="${r}" fill="${dColor}" opacity="0.9" />`;
+      }
+      
+      return `
+        <svg viewBox="0 0 100 100" width="100" height="100" style="overflow:visible;">
+          <circle cx="50" cy="50" r="45" fill="rgba(${rgb},0.05)" />
+          <circle cx="50" cy="50" r="24" fill="rgba(${rgb},0.04)" stroke="${c}" stroke-width="0.8" />
+          ${dots}
+          <text x="50" y="15" text-anchor="middle" font-family="'Poppins', sans-serif" font-size="11" font-weight="600" fill="#1e293b" style="text-shadow:-1px -1px 0 #fff,1px -1px 0 #fff,-1px 1px 0 #fff,1px 1px 0 #fff;pointer-events:none;">${siteName}</text>
+          <text x="50" y="25" text-anchor="middle" font-family="'Poppins', sans-serif" font-size="8" fill="#475569" style="text-shadow:-1px -1px 0 #fff,1px -1px 0 #fff,-1px 1px 0 #fff,1px 1px 0 #fff;pointer-events:none;">${count} wells</text>
+        </svg>
+      `;
+    }
+
+    Object.entries(siteLocations).forEach(([siteName, coords]) => {
+      const icon = L.divIcon({
+        className: 'custom-map-marker',
+        html: `<div style="cursor:pointer; transition: transform 0.2s; transform-origin: center center;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                ${getClusterSVG(siteName)}
+               </div>`,
+        iconSize: [100, 100],
+        iconAnchor: [50, 50]
+      });
+      const marker = L.marker(coords, { icon: icon }).addTo(map);
+      marker.on('click', () => filterAssetList(siteName));
+    });
+
+    let currentFilter = 'Site 1';
     function renderAssetList() {
       const al = document.getElementById('asset-list');
       al.innerHTML = '';
