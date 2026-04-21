@@ -45,21 +45,21 @@
       --bg3: #f7f9fc;
       --bg4: #edf1f7;
       --border: #e2e8f0;
-      --border2: #cbd5e1;
-      --teal: #00AEEF;
-      --teal2: #0099d6;
-      --teal3: #b3e8ff;
-      --blue: #00AEEF;
-      --blue2: #0099d6;
-      --blue3: #e0f4ff;
+      --border2: #cccccc;
+      --teal: #0072ef;
+      --teal2: #02004f;
+      --teal3: #78f3fa;
+      --blue: #0072ef;
+      --blue2: #02004f;
+      --blue3: #78f3fa;
       --purple: #7c3aed;
       --purple2: #6d28d9;
       --amber: #f59e0b;
       --amber2: #d97706;
       --red: #ef4444;
       --red2: #dc2626;
-      --text: #1e293b;
-      --text2: #475569;
+      --text: #110c09;
+      --text2: #02004f;
       --text3: #94a3b8;
       --white: #ffffff;
     }
@@ -100,9 +100,9 @@
     /* NAV */
     .nav {
       height: 64px;
-      background: rgba(255, 255, 255, 0.75);
-      border-bottom: 1px solid rgba(0, 0, 0, 0.03);
-      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.02);
+      background: var(--teal2);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 4px 12px rgba(2, 0, 79, 0.2);
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -110,8 +110,6 @@
       position: sticky;
       top: 0;
       z-index: 100;
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
     }
 
     .nav-logo {
@@ -147,9 +145,10 @@
     }
 
     .logo-prod {
-      font-size: 10px;
-      color: var(--text3);
-      border-left: 1px solid var(--border2);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--white);
+      border-left: 1px solid rgba(255, 255, 255, 0.2);
       padding-left: 10px;
       margin-left: 4px
     }
@@ -164,7 +163,7 @@
       border-radius: 6px;
       font-size: 12px;
       font-weight: 500;
-      color: var(--text3);
+      color: rgba(255,255,255,0.7);
       cursor: pointer;
       border: none;
       background: transparent;
@@ -173,14 +172,14 @@
     }
 
     .nav-tab:hover {
-      color: var(--text);
-      background: var(--bg4)
+      color: var(--white);
+      background: rgba(255,255,255,0.1)
     }
 
     .nav-tab.active {
-      color: var(--teal);
-      background: rgba(0, 174, 239, 0.1);
-      border: 1px solid rgba(0, 174, 239, 0.25)
+      color: var(--teal3);
+      background: rgba(120, 243, 250, 0.1);
+      border: 1px solid rgba(120, 243, 250, 0.25)
     }
 
     .nav-right {
@@ -194,11 +193,11 @@
       align-items: center;
       gap: 5px;
       padding: 4px 10px;
-      background: rgba(0, 174, 239, 0.08);
-      border: 1px solid rgba(0, 174, 239, 0.25);
+      background: rgba(120, 243, 250, 0.1);
+      border: 1px solid rgba(120, 243, 250, 0.25);
       border-radius: 20px;
       font-size: 11px;
-      color: var(--teal)
+      color: var(--teal3)
     }
 
     .live-dot {
@@ -210,7 +209,7 @@
 
     .nav-clock {
       font-size: 11px;
-      color: var(--text3);
+      color: rgba(255,255,255,0.7);
       font-variant-numeric: tabular-nums
     }
 
@@ -218,14 +217,14 @@
       width: 28px;
       height: 28px;
       border-radius: 50%;
-      background: var(--blue3);
-      border: 1px solid var(--blue);
+      background: rgba(120, 243, 250, 0.1);
+      border: 1px solid var(--teal3);
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 10px;
       font-weight: 600;
-      color: var(--teal)
+      color: var(--teal3)
     }
 
     /* PAGES */
@@ -268,10 +267,11 @@
       box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03), 0 2px 4px -2px rgba(0, 0, 0, 0.03);
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
+
     .kpi:hover {
       transform: translateY(-4px);
       box-shadow: 0 12px 24px -4px rgba(0, 0, 0, 0.08), 0 8px 12px -6px rgba(0, 0, 0, 0.04);
-      border-color: rgba(0, 174, 239, 0.2);
+      border-color: rgba(0, 114, 239, 0.2);
     }
 
     .kpi-lbl {
@@ -346,6 +346,7 @@
       box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03), 0 2px 4px -2px rgba(0, 0, 0, 0.03);
       transition: box-shadow 0.3s ease;
     }
+
     .panel:hover {
       box-shadow: 0 10px 24px -4px rgba(0, 0, 0, 0.06);
     }
@@ -365,9 +366,9 @@
       font-size: 9px;
       padding: 2px 7px;
       border-radius: 10px;
-      background: rgba(0, 174, 239, 0.1);
+      background: rgba(0, 114, 239, 0.1);
       color: var(--teal);
-      border: 1px solid rgba(0, 174, 239, 0.25)
+      border: 1px solid rgba(0, 114, 239, 0.25)
     }
 
     /* Asset rows */
@@ -390,8 +391,8 @@
     }
 
     .a-row.sel {
-      background: linear-gradient(90deg, rgba(0, 174, 239, 0.12) 0%, rgba(0, 174, 239, 0.04) 100%);
-      border-color: rgba(0, 174, 239, 0.3);
+      background: linear-gradient(90deg, rgba(0, 114, 239, 0.12) 0%, rgba(0, 114, 239, 0.04) 100%);
+      border-color: rgba(0, 114, 239, 0.3);
       box-shadow: inset 3px 0 0 var(--teal);
     }
 
@@ -449,7 +450,7 @@
       text-align: center;
       text-transform: uppercase;
       letter-spacing: 0.3px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
     }
 
     .st-r {
@@ -555,7 +556,7 @@
     }
 
     .tele-c:hover {
-      border-color: rgba(0, 174, 239, 0.3)
+      border-color: rgba(0, 114, 239, 0.3)
     }
 
     .tele-lbl {
@@ -634,13 +635,14 @@
       font-size: 8px;
       text-transform: uppercase;
       letter-spacing: 0.6px;
-      color: var(--text3);
+      color: var(--text2);
+      font-weight: 600;
       margin-bottom: 3px
     }
 
     .ai-card-text {
       font-size: 11px;
-      color: #cbd5e1;
+      color: var(--text);
       line-height: 1.5
     }
 
@@ -669,14 +671,14 @@
       text-align: center;
       transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
       font-family: 'Poppins', sans-serif;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
     }
 
     .ai-btn:hover {
-      background: linear-gradient(180deg, rgba(0, 174, 239, 0.05) 0%, rgba(0, 174, 239, 0.15) 100%);
-      border-color: rgba(0, 174, 239, 0.4);
+      background: linear-gradient(180deg, rgba(0, 114, 239, 0.05) 0%, rgba(0, 114, 239, 0.15) 100%);
+      border-color: rgba(0, 114, 239, 0.4);
       transform: translateY(-1px);
-      box-shadow: 0 4px 8px rgba(0, 174, 239, 0.15);
+      box-shadow: 0 4px 8px rgba(0, 114, 239, 0.15);
     }
 
     /* Bottom row */
@@ -735,15 +737,15 @@
     }
 
     .ai-tag.g {
-      border-color: rgba(0, 174, 239, 0.4);
+      border-color: rgba(0, 114, 239, 0.4);
       color: var(--teal);
-      background: rgba(0, 174, 239, 0.05)
+      background: rgba(0, 114, 239, 0.05)
     }
 
     .ai-tag.b {
-      border-color: rgba(0, 174, 239, 0.4);
+      border-color: rgba(0, 114, 239, 0.4);
       color: var(--teal);
-      background: rgba(0, 174, 239, 0.05)
+      background: rgba(0, 114, 239, 0.05)
     }
 
     .ai-engine-footer {
@@ -793,8 +795,8 @@
       width: 44px;
       height: 44px;
       border-radius: 8px;
-      background: rgba(0, 174, 239, 0.1);
-      border: 1px solid rgba(0, 174, 239, 0.25);
+      background: rgba(0, 114, 239, 0.1);
+      border: 1px solid rgba(0, 114, 239, 0.25);
       display: flex;
       align-items: center;
       justify-content: center
@@ -954,9 +956,9 @@
     }
 
     .p-low {
-      background: rgba(0, 174, 239, 0.1);
+      background: rgba(0, 114, 239, 0.1);
       color: var(--teal);
-      border: 1px solid rgba(0, 174, 239, 0.3)
+      border: 1px solid rgba(0, 114, 239, 0.3)
     }
 
     /* ---- PAGE 4: REPORTS ---- */
@@ -1097,7 +1099,7 @@
     }
 
     input:checked+.slider {
-      background-color: rgba(0, 174, 239, 0.2);
+      background-color: rgba(0, 114, 239, 0.2);
       border-color: var(--teal)
     }
 
@@ -1178,7 +1180,8 @@
 
   <div class="nav">
     <div class="nav-logo">
-      <img src="https://www.hikartech.com/wp-content/uploads/2025/12/Hikar-Header-Logo.png" alt="Hikar" style="height: 24px; margin-right: 4px;">
+      <img src="https://www.hikartech.com/wp-content/uploads/2025/12/Hikar-Header-Logo.png" alt="Hikar"
+        style="height: 24px; margin-right: 4px; filter: brightness(0) invert(1);">
       <div class="logo-prod">SIEN™ DigiOps Platform</div>
     </div>
     <div class="nav-tabs">
@@ -1246,24 +1249,28 @@
       <!-- Asset list -->
       <div class="panel">
         <div class="p-hdr">Asset monitor <span class="p-hdr-badge">Live</span></div>
-        <div id="asset-list" style="flex: 1; min-height: 0; overflow-x: hidden; overflow-y: auto; padding-right: 8px; margin-top: 12px;"></div>
+        <div id="asset-list"
+          style="flex: 1; min-height: 0; overflow-x: hidden; overflow-y: auto; padding-right: 8px; margin-top: 12px;">
+        </div>
       </div>
 
       <!-- Map -->
       <div class="panel map-wrap" style="padding:0;min-height:360px;position:relative;">
         <div id="map" style="width: 100%; height: 100%; z-index: 1; border-radius: 16px;"></div>
-        
+
         <!-- Map Overlay Info -->
         <div style="position: absolute; top: 12px; left: 16px; z-index: 10; pointer-events: none;">
-          <div style="font-size: 10px; font-weight: 600; color: #475569; background: rgba(255,255,255,0.85); padding: 4px 8px; border-radius: 4px; backdrop-filter: blur(4px);">
+          <div
+            style="font-size: 10px; font-weight: 600; color: #475569; background: rgba(255,255,255,0.85); padding: 4px 8px; border-radius: 4px; backdrop-filter: blur(4px);">
             ALBERTA, CANADA MAP
           </div>
         </div>
-        
+
         <!-- Legend Overlay -->
-        <div style="position: absolute; bottom: 12px; right: 16px; z-index: 10; display: flex; gap: 12px; background: rgba(255,255,255,0.85); padding: 6px 12px; border-radius: 20px; backdrop-filter: blur(4px); box-shadow: 0 2px 8px rgba(0,0,0,0.05); pointer-events: none;">
+        <div
+          style="position: absolute; bottom: 12px; right: 16px; z-index: 10; display: flex; gap: 12px; background: rgba(255,255,255,0.85); padding: 6px 12px; border-radius: 20px; backdrop-filter: blur(4px); box-shadow: 0 2px 8px rgba(0,0,0,0.05); pointer-events: none;">
           <div style="display:flex;align-items:center;gap:4px;font-size:10px;color:var(--text2)">
-            <div style="width:8px;height:8px;border-radius:50%;background:#00AEEF"></div> Normal
+            <div style="width:8px;height:8px;border-radius:50%;background:#0072ef"></div> Normal
           </div>
           <div style="display:flex;align-items:center;gap:4px;font-size:10px;color:var(--text2)">
             <div style="width:8px;height:8px;border-radius:50%;background:#f59e0b"></div> Warning
@@ -1327,43 +1334,46 @@
     <!-- Telemetry strip between map and bottom -->
     <div style="padding: 0 24px 24px 24px; background: var(--bg);">
       <div class="panel" style="padding: 24px; border-radius: 16px; box-shadow: 0 4px 24px rgba(0, 0, 0, 0.03);">
-        <div class="p-hdr" style="margin-bottom: 20px; font-size: 13px; font-weight: 600; color: var(--text); border-bottom: 1px solid var(--border); padding-bottom: 12px;">
-          Real-time telemetry — <span id="tele-asset-title" style="color:var(--teal);margin-left:4px;">PJ-101 (selected)</span> 
-          <span class="p-hdr-badge" style="margin-left:auto; font-size: 10px; font-weight: normal;">Live · 5s refresh</span>
+        <div class="p-hdr"
+          style="margin-bottom: 20px; font-size: 13px; font-weight: 600; color: var(--text); border-bottom: 1px solid var(--border); padding-bottom: 12px;">
+          Real-time telemetry — <span id="tele-asset-title" style="color:var(--teal);margin-left:4px;">PJ-101
+            (selected)</span>
+          <span class="p-hdr-badge" style="margin-left:auto; font-size: 10px; font-weight: normal;">Live · 5s
+            refresh</span>
         </div>
         <div class="tele-g" style="gap: 24px;">
-        <div class="tele-c">
-          <div class="tele-lbl">Strokes / min</div>
-          <div class="tele-val text-blue" id="val-spm">6.4<span class="tele-unit">spm</span></div>
-          <div class="spark-row" id="s-spm"></div>
-        </div>
-        <div class="tele-c">
-          <div class="tele-lbl">Fluid Level</div>
-          <div class="tele-val text-teal" id="val-fl">1,847<span class="tele-unit">ft</span></div>
-          <div class="spark-row" id="s-fl"></div>
-        </div>
-        <div class="tele-c">
-          <div class="tele-lbl">Motor Load</div>
-          <div class="tele-val text-amber" id="val-ml">72<span class="tele-unit">%</span></div>
-          <div class="spark-row" id="s-ml"></div>
-        </div>
-        <div class="tele-c">
-          <div class="tele-lbl">Casing Pressure</div>
-          <div class="tele-val" style="color:var(--text2)" id="val-cp">48<span class="tele-unit">psi</span></div>
-          <div class="spark-row" id="s-cp"></div>
-        </div>
-        <div class="tele-c">
-          <div class="tele-lbl">Rod Load</div>
-          <div class="tele-val text-teal" id="val-rl">18,240<span class="tele-unit">lbs</span></div>
-          <div class="spark-row" id="s-rl"></div>
-        </div>
-        <div class="tele-c">
-          <div class="tele-lbl">Downhole Temp</div>
-          <div class="tele-val text-amber" id="val-tp">124<span class="tele-unit">°C</span></div>
-          <div class="spark-row" id="s-tp"></div>
+          <div class="tele-c">
+            <div class="tele-lbl">Strokes / min</div>
+            <div class="tele-val text-blue" id="val-spm">6.4<span class="tele-unit">spm</span></div>
+            <div class="spark-row" id="s-spm"></div>
+          </div>
+          <div class="tele-c">
+            <div class="tele-lbl">Fluid Level</div>
+            <div class="tele-val text-teal" id="val-fl">1,847<span class="tele-unit">ft</span></div>
+            <div class="spark-row" id="s-fl"></div>
+          </div>
+          <div class="tele-c">
+            <div class="tele-lbl">Motor Load</div>
+            <div class="tele-val text-amber" id="val-ml">72<span class="tele-unit">%</span></div>
+            <div class="spark-row" id="s-ml"></div>
+          </div>
+          <div class="tele-c">
+            <div class="tele-lbl">Casing Pressure</div>
+            <div class="tele-val" style="color:var(--text2)" id="val-cp">48<span class="tele-unit">psi</span></div>
+            <div class="spark-row" id="s-cp"></div>
+          </div>
+          <div class="tele-c">
+            <div class="tele-lbl">Rod Load</div>
+            <div class="tele-val text-teal" id="val-rl">18,240<span class="tele-unit">lbs</span></div>
+            <div class="spark-row" id="s-rl"></div>
+          </div>
+          <div class="tele-c">
+            <div class="tele-lbl">Downhole Temp</div>
+            <div class="tele-val text-amber" id="val-tp">124<span class="tele-unit">°C</span></div>
+            <div class="spark-row" id="s-tp"></div>
+          </div>
         </div>
       </div>
-    </div>
     </div>
     <div class="bot-row">
       <div class="panel">
@@ -1462,7 +1472,8 @@
             </div>
             <div class="param-card">
               <div class="param-label">Casing Press.</div>
-              <div class="param-val" style="color:var(--text2)">48<span style="font-size:11px;color:var(--text3)"> psi</span>
+              <div class="param-val" style="color:var(--text2)">48<span style="font-size:11px;color:var(--text3)">
+                  psi</span>
               </div>
               <div class="param-trend text-dim">Nominal</div>
             </div>
@@ -1476,9 +1487,11 @@
         <div style="background:var(--bg3);border-radius:6px;padding:10px;border:1px solid rgba(0,212,170,0.15)">
           <div style="font-size:9px;text-transform:uppercase;letter-spacing:0.6px;color:var(--text3);margin-bottom:6px">
             AI Well Assessment</div>
-          <div style="font-size:11px;color:var(--text);line-height:1.6">No anomalies detected. PJ-101 is performing within
+          <div style="font-size:11px;color:var(--text);line-height:1.6">No anomalies detected. PJ-101 is performing
+            within
             optimal parameters. Rod load variance: <span class="text-teal">0.3σ</span>. Predicted production continuity:
-            <span class="text-teal">14+ days</span> with no intervention required.</div>
+            <span class="text-teal">14+ days</span> with no intervention required.
+          </div>
           <div style="margin-top:8px;display:flex;gap:6px">
             <div class="ai-btn"
               onclick="sendPrompt('Generate a full health report for well PJ-101 including production forecast and maintenance recommendations')">
@@ -1599,7 +1612,8 @@
           style="background:var(--bg3);border-radius:6px;padding:12px;margin-bottom:10px;border-left:3px solid var(--purple)">
           <div style="font-size:9px;text-transform:uppercase;letter-spacing:0.6px;color:var(--text3);margin-bottom:5px">
             AI Diagnosis</div>
-          <div style="font-size:12px;color:var(--text);line-height:1.7" id="anom-desc">Rod load variance exceeded 2.4σ over
+          <div style="font-size:12px;color:var(--text);line-height:1.7" id="anom-desc">Rod load variance exceeded 2.4σ
+            over
             6h window. Spectral analysis shows harmonic at 12Hz matching early bearing wear signature.</div>
           <div style="margin-top:8px;display:flex;gap:12px">
             <div style="text-align:center">
@@ -1840,17 +1854,17 @@
     const siteCounts = { 'Site 1': 15, 'Site 2': 12, 'Site 3': 8, 'Site 4': 5 };
     const prefixes = { 'Site 1': 'CF', 'Site 2': 'PJ', 'Site 3': 'RD', 'Site 4': 'RS' };
     Object.entries(siteCounts).forEach(([site, count]) => {
-      for(let i=1; i<=count; i++) {
-        let s = 'r'; let eff = 85 + Math.floor(Math.random()*15);
-        if(Math.random() < 0.15) { s = 'w'; eff = 60 + Math.floor(Math.random()*25); }
-        else if(Math.random() < 0.05) { s = 'c'; eff = 20 + Math.floor(Math.random()*30); }
-        else if(Math.random() < 0.02) { s = 'x'; eff = 0; }
-        
+      for (let i = 1; i <= count; i++) {
+        let s = 'r'; let eff = 85 + Math.floor(Math.random() * 15);
+        if (Math.random() < 0.15) { s = 'w'; eff = 60 + Math.floor(Math.random() * 25); }
+        else if (Math.random() < 0.05) { s = 'c'; eff = 20 + Math.floor(Math.random() * 30); }
+        else if (Math.random() < 0.02) { s = 'x'; eff = 0; }
+
         // Hardcode a few specifically recognizable ones for the demo
-        if(site === 'Site 1' && i === 1) { s = 'r'; eff = 92; }
-        if(site === 'Site 1' && i === 3) { s = 'c'; eff = 45; }
-        if(site === 'Site 2' && i === 7) { s = 'w'; eff = 74; }
-        
+        if (site === 'Site 1' && i === 1) { s = 'r'; eff = 92; }
+        if (site === 'Site 1' && i === 3) { s = 'c'; eff = 45; }
+        if (site === 'Site 2' && i === 7) { s = 'w'; eff = 74; }
+
         assets.push({
           id: `${prefixes[site]}-${i.toString().padStart(3, '0')}`,
           site: site,
@@ -1878,11 +1892,11 @@
     };
 
     const siteColors = {
-      'Site 1': '#00AEEF',
-      'Site 2': '#00AEEF',
+      'Site 1': '#0072ef',
+      'Site 2': '#0072ef',
       'Site 3': '#f59e0b',
       'Site 4': '#ef4444',
-      'Site 5': '#00AEEF'
+      'Site 5': '#0072ef'
     };
 
     // Draw animated pipes connecting sites
@@ -1894,27 +1908,27 @@
 
     function getClusterSVG(siteName) {
       const c = siteColors[siteName];
-      const rgb = c === '#00AEEF' ? '0,174,239' : (c === '#f59e0b' ? '245,158,11' : '239,68,68');
+      const rgb = c === '#0072ef' ? '0,114,239' : (c === '#f59e0b' ? '245,158,11' : '239,68,68');
       const count = siteName === 'Site 1' ? 15 : (siteName === 'Site 2' ? 12 : (siteName === 'Site 3' ? 8 : (siteName === 'Site 4' ? 5 : 2)));
-      
+
       let dots = '';
       let seed = siteName.charCodeAt(5);
       function rand() { seed = (seed * 9301 + 49297) % 233280; return seed / 233280; }
-      
-      for(let i=0; i<count; i++) {
+
+      for (let i = 0; i < count; i++) {
         const angle = rand() * Math.PI * 2;
         const dist = 6 + rand() * 14;
         const cx = 50 + Math.cos(angle) * dist;
         const cy = 50 + Math.sin(angle) * dist;
         const r = 2.5 + rand() * 2.5;
-        
-        let dColor = '#00AEEF';
-        if(rand() > 0.8) dColor = '#f59e0b';
-        if(rand() > 0.9) dColor = '#ef4444';
-        
+
+        let dColor = '#0072ef';
+        if (rand() > 0.8) dColor = '#f59e0b';
+        if (rand() > 0.9) dColor = '#ef4444';
+
         dots += `<circle cx="${cx}" cy="${cy}" r="${r}" fill="${dColor}" opacity="0.9" />`;
       }
-      
+
       return `
         <svg viewBox="0 0 100 100" width="100" height="100" style="overflow:visible;">
           <circle cx="50" cy="50" r="45" fill="rgba(${rgb},0.05)" />
@@ -1944,20 +1958,20 @@
       const al = document.getElementById('asset-list');
       al.innerHTML = '';
       const filtered = currentFilter ? assets.filter(a => a.site === currentFilter || a.site === currentFilter.replace(' Field', '').replace(' Site', '')) : assets;
-      
+
       if (currentFilter) {
-         const clearBtn = document.createElement('div');
-         clearBtn.innerHTML = `Showing: <b style="color:var(--text)">${currentFilter}</b> <span style="float:right;color:var(--red);cursor:pointer;font-weight:600;" onclick="currentFilter=null;renderAssetList()">Clear ✕</span>`;
-         clearBtn.style.cssText = "font-size:11px; padding-bottom:8px; margin-bottom:8px; border-bottom:1px solid var(--border);";
-         al.appendChild(clearBtn);
+        const clearBtn = document.createElement('div');
+        clearBtn.innerHTML = `Showing: <b style="color:var(--text)">${currentFilter}</b> <span style="float:right;color:var(--red);cursor:pointer;font-weight:600;" onclick="currentFilter=null;renderAssetList()">Clear ✕</span>`;
+        clearBtn.style.cssText = "font-size:11px; padding-bottom:8px; margin-bottom:8px; border-bottom:1px solid var(--border);";
+        al.appendChild(clearBtn);
       }
 
       filtered.forEach((a, i) => {
         const d = document.createElement('div');
         d.className = 'a-row' + (i === 0 && !currentFilter ? ' sel' : '');
         d.innerHTML = `<div class="a-dot ${dotC[a.s]}"></div><div class="a-name">${a.id}</div><div class="a-site">${a.site}</div><div class="a-eff" id="eff-${a.id}">${a.eff}%</div><div class="a-st ${stC[a.s]}">${stL[a.s]}</div>`;
-        d.onclick = () => { 
-          document.querySelectorAll('.a-row').forEach(r => r.classList.remove('sel')); 
+        d.onclick = () => {
+          document.querySelectorAll('.a-row').forEach(r => r.classList.remove('sel'));
           d.classList.add('sel');
           navigateToWellDetail(a.id);
         };
@@ -1972,14 +1986,14 @@
 
     function navigateToWellDetail(id) {
       const wdTitle = document.getElementById('wd-title');
-      if(wdTitle) wdTitle.textContent = id;
-      
+      if (wdTitle) wdTitle.textContent = id;
+
       const teleTitle = document.getElementById('tele-asset-title');
-      if(teleTitle) teleTitle.textContent = id + ' (selected)';
-      
+      if (teleTitle) teleTitle.textContent = id + ' (selected)';
+
       showPage('welldetail', document.querySelectorAll('.nav-tab')[1]);
     }
-    
+
     renderAssetList();
 
     function makeSpark(id, vals, color) {
@@ -1992,11 +2006,11 @@
         w.appendChild(b);
       });
     }
-    makeSpark('s-spm', [5.8, 6.1, 5.9, 6.4, 6.2, 6.0, 6.4], '#00AEEF');
-    makeSpark('s-fl', [1900, 1870, 1860, 1855, 1850, 1848, 1847], '#00AEEF');
+    makeSpark('s-spm', [5.8, 6.1, 5.9, 6.4, 6.2, 6.0, 6.4], '#0072ef');
+    makeSpark('s-fl', [1900, 1870, 1860, 1855, 1850, 1848, 1847], '#0072ef');
     makeSpark('s-ml', [68, 70, 72, 74, 71, 73, 72], '#f59e0b');
     makeSpark('s-cp', [44, 46, 47, 48, 47, 48, 48], '#5a7399');
-    makeSpark('s-rl', [17200, 17800, 18000, 18200, 18100, 18200, 18240], '#00AEEF');
+    makeSpark('s-rl', [17200, 17800, 18000, 18200, 18100, 18200, 18240], '#0072ef');
     makeSpark('s-tp', [118, 120, 121, 123, 122, 124, 124], '#f59e0b');
 
     function showPage(pg, btn) {
@@ -2030,7 +2044,7 @@
       data: {
         labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
         datasets: [
-          { type: 'line', data: [11200, 11600, 12000, 11800, 12200, 12100, 12450], borderColor: '#00AEEF', borderWidth: 1.5, pointRadius: 2, pointBackgroundColor: '#00AEEF', fill: false, yAxisID: 'y' },
+          { type: 'line', data: [11200, 11600, 12000, 11800, 12200, 12100, 12450], borderColor: '#0072ef', borderWidth: 1.5, pointRadius: 2, pointBackgroundColor: '#0072ef', fill: false, yAxisID: 'y' },
           { type: 'bar', data: [4800, 4900, 5100, 4950, 5050, 4980, 5120], backgroundColor: '#e2e8f0', yAxisID: 'y2', borderRadius: 2 }
         ]
       },
@@ -2038,7 +2052,7 @@
         responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } },
         scales: {
           x: { ticks: { color: '#94a3b8', font: { size: 9 } }, grid: { color: '#e2e8f0' } },
-          y: { ticks: { color: '#00AEEF', font: { size: 9 }, callback: v => v.toLocaleString() }, grid: { color: '#e2e8f0' }, position: 'left' },
+          y: { ticks: { color: '#0072ef', font: { size: 9 }, callback: v => v.toLocaleString() }, grid: { color: '#e2e8f0' }, position: 'left' },
           y2: { ticks: { color: '#0077b3', font: { size: 9 } }, grid: { display: false }, position: 'right' }
         }
       }
@@ -2052,7 +2066,7 @@
         pts.push({ x: Math.round(13000 + 4000 * Math.cos(t2)), y: Math.round(10000 + 8000 * Math.sin(t2) * (1 + 0.3 * Math.cos(t2))) });
       }
       gCharts.dyna = new Chart(document.getElementById('dynaChart'), {
-        type: 'scatter', data: { datasets: [{ data: pts, borderColor: '#00AEEF', backgroundColor: 'transparent', borderWidth: 1.5, pointRadius: 0, showLine: true, tension: 0.4 }] },
+        type: 'scatter', data: { datasets: [{ data: pts, borderColor: '#0072ef', backgroundColor: 'transparent', borderWidth: 1.5, pointRadius: 0, showLine: true, tension: 0.4 }] },
         options: {
           responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } },
           scales: {
@@ -2064,12 +2078,12 @@
       const hrs = Array.from({ length: 24 }, (_, i) => i + 'h');
       const prod24 = hrs.map((_, i) => Math.round(12 + Math.sin(i * 0.4) * 1.5 + Math.random() * 0.8));
       gCharts.trend = new Chart(document.getElementById('wellTrendChart'), {
-        type: 'line', data: { labels: hrs, datasets: [{ data: prod24, borderColor: '#00AEEF', borderWidth: 1.5, backgroundColor: 'rgba(0,174,239,0.06)', fill: true, pointRadius: 0, tension: 0.4 }] },
+        type: 'line', data: { labels: hrs, datasets: [{ data: prod24, borderColor: '#0072ef', borderWidth: 1.5, backgroundColor: 'rgba(0,114,239,0.06)', fill: true, pointRadius: 0, tension: 0.4 }] },
         options: {
           responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } },
           scales: {
             x: { ticks: { color: '#94a3b8', font: { size: 9 }, maxTicksLimit: 8 }, grid: { color: '#e2e8f0' } },
-            y: { ticks: { color: '#00AEEF', font: { size: 9 } }, grid: { color: '#e2e8f0' } }
+            y: { ticks: { color: '#0072ef', font: { size: 9 } }, grid: { color: '#e2e8f0' } }
           }
         }
       });
@@ -2118,12 +2132,12 @@
       const prod = days.map((_, i) => Math.round(11200 + i * 42 + Math.sin(i * 0.6) * 200 + Math.random() * 150));
       gCharts.rep1 = new Chart(document.getElementById('rep1'), {
         type: 'line',
-        data: { labels: days, datasets: [{ data: prod, borderColor: '#00AEEF', backgroundColor: 'rgba(0,174,239,0.05)', fill: true, borderWidth: 1.5, pointRadius: 0, tension: 0.4 }] },
+        data: { labels: days, datasets: [{ data: prod, borderColor: '#0072ef', backgroundColor: 'rgba(0,114,239,0.05)', fill: true, borderWidth: 1.5, pointRadius: 0, tension: 0.4 }] },
         options: {
           responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } },
           scales: {
             x: { ticks: { color: '#94a3b8', font: { size: 9 }, maxTicksLimit: 10 }, grid: { color: '#e2e8f0' } },
-            y: { ticks: { color: '#00AEEF', font: { size: 9 }, callback: v => v.toLocaleString() }, grid: { color: '#e2e8f0' } }
+            y: { ticks: { color: '#0072ef', font: { size: 9 }, callback: v => v.toLocaleString() }, grid: { color: '#e2e8f0' } }
           }
         }
       });
@@ -2131,7 +2145,7 @@
         type: 'doughnut',
         data: {
           labels: ['90%+', '75–90%', '50–75%', '<50%'],
-          datasets: [{ data: [43, 38, 28, 19], backgroundColor: ['#00AEEF', '#0077b3', '#f59e0b', '#ef4444'], borderWidth: 0, hoverOffset: 4 }]
+          datasets: [{ data: [43, 38, 28, 19], backgroundColor: ['#0072ef', '#0077b3', '#f59e0b', '#ef4444'], borderWidth: 0, hoverOffset: 4 }]
         },
         options: { responsive: true, maintainAspectRatio: false, cutout: '68%', plugins: { legend: { display: false } } }
       });
@@ -2139,13 +2153,13 @@
         type: 'line',
         data: {
           labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-          datasets: [{ data: [2.2, 2.28, 2.31, 2.27, 2.39, 2.42, 2.48], borderColor: '#00AEEF', borderWidth: 1.5, backgroundColor: 'rgba(0,174,239,0.05)', fill: true, pointRadius: 3, pointBackgroundColor: '#00AEEF', tension: 0.4 }]
+          datasets: [{ data: [2.2, 2.28, 2.31, 2.27, 2.39, 2.42, 2.48], borderColor: '#0072ef', borderWidth: 1.5, backgroundColor: 'rgba(0,114,239,0.05)', fill: true, pointRadius: 3, pointBackgroundColor: '#0072ef', tension: 0.4 }]
         },
         options: {
           responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } },
           scales: {
             x: { ticks: { color: '#94a3b8', font: { size: 9 } }, grid: { color: '#e2e8f0' } },
-            y: { ticks: { color: '#00AEEF', font: { size: 9 } }, grid: { color: '#e2e8f0' } }
+            y: { ticks: { color: '#0072ef', font: { size: 9 } }, grid: { color: '#e2e8f0' } }
           }
         }
       });
@@ -2226,7 +2240,7 @@
           'rl': Math.round((Math.random() - 0.5) * 200),
           'tp': Math.round((Math.random() - 0.5) * 2)
         };
-        const colors = { 'spm': '#00AEEF', 'fl': '#00AEEF', 'ml': '#f59e0b', 'cp': '#5a7399', 'rl': '#00AEEF', 'tp': '#f59e0b' };
+        const colors = { 'spm': '#0072ef', 'fl': '#0072ef', 'ml': '#f59e0b', 'cp': '#5a7399', 'rl': '#0072ef', 'tp': '#f59e0b' };
 
         for (let key in sData) {
           let d = sData[key];
